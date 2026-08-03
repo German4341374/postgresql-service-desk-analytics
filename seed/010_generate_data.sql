@@ -308,6 +308,12 @@ CROSS JOIN generate_series(1, 3) AS slot(number)
 JOIN software_catalog AS software
   ON software.id = ((device.id * 17 + slot.number * 31 - 1) % 500) + 1;
 
+SELECT setval(
+    pg_get_serial_sequence('software_installations', 'id'),
+    (SELECT max(id) FROM software_installations),
+    true
+);
+
 INSERT INTO dataset_manifest (
     singleton,
     user_count,
