@@ -93,7 +93,7 @@ WITH generated AS (
         number,
         TIMESTAMPTZ '2023-01-01 00:00:00+00'
             + ((number * 17) % 1095) * INTERVAL '1 day'
-            + ((number * 7919) % 86400) * INTERVAL '1 second' AS opened_at,
+            + ((number::bigint * 7919) % 86400) * INTERVAL '1 second' AS opened_at,
         CASE
             WHEN number % 100 = 0 THEN 'P1'::incident_priority
             WHEN number % 10 = 0 THEN 'P2'::incident_priority
