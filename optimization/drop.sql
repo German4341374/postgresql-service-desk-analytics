@@ -1,0 +1,12 @@
+DROP INDEX IF EXISTS idx_incidents_brin_created;
+DROP INDEX IF EXISTS idx_incidents_requester_created;
+DROP INDEX IF EXISTS idx_incidents_assignee_status;
+DROP INDEX IF EXISTS idx_incidents_device_created;
+DROP INDEX IF EXISTS idx_incidents_open_priority_due;
+DROP INDEX IF EXISTS idx_incidents_search_gin;
+DROP INDEX IF EXISTS idx_incidents_service_status_created;
+DROP INDEX IF EXISTS idx_comments_incident_created;
+DROP INDEX IF EXISTS idx_assignments_technician_active;
+DROP INDEX IF EXISTS idx_sla_breach_target;
+DROP INDEX IF EXISTS idx_installations_software_version;
+ANALYZE;
