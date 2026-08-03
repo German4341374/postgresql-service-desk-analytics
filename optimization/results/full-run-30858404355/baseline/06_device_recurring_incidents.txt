@@ -1,0 +1,208 @@
+                                                                            QUERY PLAN                                                                            
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Limit  (cost=67986.79..67986.88 rows=37 width=64) (actual time=120.770..127.944 rows=5.00 loops=1)
+   Buffers: shared hit=324 read=59308 written=883
+   I/O Timings: shared read=69.899 write=3.609
+   ->  Sort  (cost=67986.79..67986.88 rows=37 width=64) (actual time=120.768..127.941 rows=5.00 loops=1)
+         Sort Key: incidents.created_at DESC
+         Sort Method: quicksort  Memory: 25kB
+         Buffers: shared hit=324 read=59308 written=883
+         I/O Timings: shared read=69.899 write=3.609
+         ->  Gather  (cost=1000.00..67985.83 rows=37 width=64) (actual time=9.381..127.912 rows=5.00 loops=1)
+               Workers Planned: 2
+               Workers Launched: 2
+               Buffers: shared hit=321 read=59308 written=883
+               I/O Timings: shared read=69.899 write=3.609
+               ->  Parallel Append  (cost=0.00..66982.13 rows=37 width=64) (actual time=5.346..115.082 rows=1.67 loops=3)
+                     Buffers: shared hit=321 read=59308 written=883
+                     I/O Timings: shared read=69.899 write=3.609
+                     ->  Parallel Seq Scan on incidents_2023_01 incidents_1  (cost=0.00..1899.18 rows=1 width=64) (actual time=4.118..12.602 rows=1.00 loops=1)
+                           Filter: (device_id = 12345)
+                           Rows Removed by Filter: 28311
+                           Buffers: shared read=1691
+                           I/O Timings: shared read=4.669
+                     ->  Parallel Seq Scan on incidents_2023_03 incidents_3  (cost=0.00..1899.18 rows=1 width=64) (actual time=3.376..7.059 rows=1.00 loops=1)
+                           Filter: (device_id = 12345)
+                           Rows Removed by Filter: 28311
+                           Buffers: shared read=1691
+                           I/O Timings: shared read=0.470
+                     ->  Parallel Seq Scan on incidents_2023_05 incidents_5  (cost=0.00..1899.17 rows=1 width=64) (actual time=9.412..10.210 rows=1.00 loops=1)
+                           Filter: (device_id = 12345)
+                           Rows Removed by Filter: 28310
+                           Buffers: shared read=1691
+                           I/O Timings: shared read=2.848
+                     ->  Parallel Seq Scan on incidents_2023_08 incidents_8  (cost=0.00..1899.17 rows=1 width=64) (actual time=9.794..9.794 rows=0.00 loops=1)
+                           Filter: (device_id = 12345)
+                           Rows Removed by Filter: 28311
+                           Buffers: shared read=1691
+                           I/O Timings: shared read=1.437
+                     ->  Parallel Seq Scan on incidents_2024_01 incidents_13  (cost=0.00..1899.17 rows=1 width=64) (actual time=10.574..10.574 rows=0.00 loops=1)
+                           Filter: (device_id = 12345)
+                           Rows Removed by Filter: 28311
+                           Buffers: shared read=1691 written=30
+                           I/O Timings: shared read=1.592 write=0.137
+                     ->  Parallel Seq Scan on incidents_2024_03 incidents_15  (cost=0.00..1899.17 rows=1 width=64) (actual time=10.072..10.072 rows=0.00 loops=1)
+                           Filter: (device_id = 12345)
+                           Rows Removed by Filter: 28311
+                           Buffers: shared read=1691 written=172
+                           I/O Timings: shared read=1.259 write=1.108
+                     ->  Parallel Seq Scan on incidents_2024_05 incidents_17  (cost=0.00..1899.17 rows=1 width=64) (actual time=10.081..10.081 rows=0.00 loops=1)
+                           Filter: (device_id = 12345)
+                           Rows Removed by Filter: 28311
+                           Buffers: shared read=1691 written=315
+                           I/O Timings: shared read=1.509 write=0.968
+                     ->  Parallel Seq Scan on incidents_2024_08 incidents_20  (cost=0.00..1899.17 rows=1 width=64) (actual time=9.617..9.617 rows=0.00 loops=1)
+                           Filter: (device_id = 12345)
+                           Rows Removed by Filter: 28311
+                           Buffers: shared read=1691 written=28
+                           I/O Timings: shared read=3.255 write=0.091
+                     ->  Parallel Seq Scan on incidents_2024_10 incidents_22  (cost=0.00..1899.17 rows=1 width=64) (actual time=10.417..10.417 rows=0.00 loops=1)
+                           Filter: (device_id = 12345)
+                           Rows Removed by Filter: 28311
+                           Buffers: shared read=1691
+                           I/O Timings: shared read=4.786
+                     ->  Parallel Seq Scan on incidents_2025_01 incidents_25  (cost=0.00..1899.17 rows=1 width=64) (actual time=10.100..10.100 rows=0.00 loops=1)
+                           Filter: (device_id = 12345)
+                           Rows Removed by Filter: 28311
+                           Buffers: shared read=1691
+                           I/O Timings: shared read=3.889
+                     ->  Parallel Seq Scan on incidents_2025_03 incidents_27  (cost=0.00..1899.17 rows=1 width=64) (actual time=7.528..7.528 rows=0.00 loops=1)
+                           Filter: (device_id = 12345)
+                           Rows Removed by Filter: 28311
+                           Buffers: shared read=1691
+                           I/O Timings: shared read=0.955
+                     ->  Parallel Seq Scan on incidents_2025_08 incidents_32  (cost=0.00..1899.17 rows=1 width=64) (actual time=10.862..10.863 rows=0.00 loops=1)
+                           Filter: (device_id = 12345)
+                           Rows Removed by Filter: 28311
+                           Buffers: shared read=1691
+                           I/O Timings: shared read=1.957
+                     ->  Parallel Seq Scan on incidents_2023_07 incidents_7  (cost=0.00..1899.16 rows=1 width=64) (actual time=8.035..8.035 rows=0.00 loops=1)
+                           Filter: (device_id = 12345)
+                           Rows Removed by Filter: 28310
+                           Buffers: shared read=1691
+                           I/O Timings: shared read=1.206
+                     ->  Parallel Seq Scan on incidents_2023_10 incidents_10  (cost=0.00..1899.16 rows=1 width=64) (actual time=7.458..7.458 rows=0.00 loops=1)
+                           Filter: (device_id = 12345)
+                           Rows Removed by Filter: 28310
+                           Buffers: shared read=1691
+                           I/O Timings: shared read=0.517
+                     ->  Parallel Seq Scan on incidents_2023_12 incidents_12  (cost=0.00..1899.16 rows=1 width=64) (actual time=9.935..9.935 rows=0.00 loops=1)
+                           Filter: (device_id = 12345)
+                           Rows Removed by Filter: 28310
+                           Buffers: shared read=1691
+                           I/O Timings: shared read=2.173
+                     ->  Parallel Seq Scan on incidents_2024_07 incidents_19  (cost=0.00..1899.16 rows=1 width=64) (actual time=9.063..9.063 rows=0.00 loops=1)
+                           Filter: (device_id = 12345)
+                           Rows Removed by Filter: 28310
+                           Buffers: shared read=1691 written=30
+                           I/O Timings: shared read=0.830 write=0.105
+                     ->  Parallel Seq Scan on incidents_2024_12 incidents_24  (cost=0.00..1899.16 rows=1 width=64) (actual time=7.014..7.014 rows=0.00 loops=1)
+                           Filter: (device_id = 12345)
+                           Rows Removed by Filter: 28310
+                           Buffers: shared read=1691 written=30
+                           I/O Timings: shared read=1.292 write=0.095
+                     ->  Parallel Seq Scan on incidents_2025_05 incidents_29  (cost=0.00..1899.16 rows=1 width=64) (actual time=7.125..7.126 rows=0.00 loops=1)
+                           Filter: (device_id = 12345)
+                           Rows Removed by Filter: 28310
+                           Buffers: shared read=1691
+                           I/O Timings: shared read=1.497
+                     ->  Parallel Seq Scan on incidents_2025_07 incidents_31  (cost=0.00..1899.16 rows=1 width=64) (actual time=12.742..12.743 rows=0.00 loops=1)
+                           Filter: (device_id = 12345)
+                           Rows Removed by Filter: 28310
+                           Buffers: shared read=1691 written=2
+                           I/O Timings: shared read=3.459 write=0.025
+                     ->  Parallel Seq Scan on incidents_2025_10 incidents_34  (cost=0.00..1899.16 rows=1 width=64) (actual time=6.328..6.328 rows=0.00 loops=1)
+                           Filter: (device_id = 12345)
+                           Rows Removed by Filter: 28310
+                           Buffers: shared read=1691 written=2
+                           I/O Timings: shared read=0.413 write=0.012
+                     ->  Parallel Seq Scan on incidents_2023_04 incidents_4  (cost=0.00..1828.46 rows=1 width=64) (actual time=5.156..7.415 rows=1.00 loops=1)
+                           Filter: (device_id = 12345)
+                           Rows Removed by Filter: 27398
+                           Buffers: shared read=1627
+                           I/O Timings: shared read=1.552
+                     ->  Parallel Seq Scan on incidents_2023_06 incidents_6  (cost=0.00..1828.45 rows=1 width=64) (actual time=7.451..7.451 rows=0.00 loops=1)
+                           Filter: (device_id = 12345)
+                           Rows Removed by Filter: 27397
+                           Buffers: shared read=1627
+                           I/O Timings: shared read=1.124
+                     ->  Parallel Seq Scan on incidents_2023_09 incidents_9  (cost=0.00..1828.45 rows=1 width=64) (actual time=9.319..9.319 rows=0.00 loops=1)
+                           Filter: (device_id = 12345)
+                           Rows Removed by Filter: 27397
+                           Buffers: shared read=1627
+                           I/O Timings: shared read=1.907
+                     ->  Parallel Seq Scan on incidents_2023_11 incidents_11  (cost=0.00..1828.45 rows=1 width=64) (actual time=7.373..7.373 rows=0.00 loops=1)
+                           Filter: (device_id = 12345)
+                           Rows Removed by Filter: 27397
+                           Buffers: shared read=1627
+                           I/O Timings: shared read=2.027
+                     ->  Parallel Seq Scan on incidents_2024_06 incidents_18  (cost=0.00..1828.45 rows=1 width=64) (actual time=2.768..2.768 rows=0.00 loops=3)
+                           Filter: (device_id = 12345)
+                           Rows Removed by Filter: 9132
+                           Buffers: shared read=1627
+                           I/O Timings: shared read=3.152
+                     ->  Parallel Seq Scan on incidents_2024_11 incidents_23  (cost=0.00..1828.45 rows=1 width=64) (actual time=4.780..4.780 rows=0.00 loops=2)
+                           Filter: (device_id = 12345)
+                           Rows Removed by Filter: 13698
+                           Buffers: shared read=1627
+                           I/O Timings: shared read=3.584
+                     ->  Parallel Seq Scan on incidents_2025_04 incidents_28  (cost=0.00..1828.45 rows=1 width=64) (actual time=11.269..11.269 rows=0.00 loops=1)
+                           Filter: (device_id = 12345)
+                           Rows Removed by Filter: 27397
+                           Buffers: shared read=1627
+                           I/O Timings: shared read=0.827
+                     ->  Parallel Seq Scan on incidents_2025_06 incidents_30  (cost=0.00..1828.45 rows=1 width=64) (actual time=10.217..10.217 rows=0.00 loops=1)
+                           Filter: (device_id = 12345)
+                           Rows Removed by Filter: 27397
+                           Buffers: shared hit=321 read=1306
+                           I/O Timings: shared read=1.182
+                     ->  Parallel Seq Scan on incidents_2025_09 incidents_33  (cost=0.00..1828.45 rows=1 width=64) (actual time=10.542..10.542 rows=0.00 loops=1)
+                           Filter: (device_id = 12345)
+                           Rows Removed by Filter: 27397
+                           Buffers: shared read=1627 written=21
+                           I/O Timings: shared read=0.305 write=0.082
+                     ->  Parallel Seq Scan on incidents_2025_11 incidents_35  (cost=0.00..1828.45 rows=1 width=64) (actual time=11.965..11.965 rows=0.00 loops=1)
+                           Filter: (device_id = 12345)
+                           Rows Removed by Filter: 27397
+                           Buffers: shared read=1627
+                           I/O Timings: shared read=0.283
+                     ->  Parallel Seq Scan on incidents_2025_12 incidents_36  (cost=0.00..1828.45 rows=1 width=64) (actual time=10.205..10.205 rows=0.00 loops=1)
+                           Filter: (device_id = 12345)
+                           Rows Removed by Filter: 27397
+                           Buffers: shared read=1627
+                           I/O Timings: shared read=0.555
+                     ->  Parallel Seq Scan on incidents_2024_04 incidents_16  (cost=0.00..1828.44 rows=1 width=64) (actual time=12.949..12.949 rows=0.00 loops=1)
+                           Filter: (device_id = 12345)
+                           Rows Removed by Filter: 27396
+                           Buffers: shared read=1627
+                           I/O Timings: shared read=5.098
+                     ->  Parallel Seq Scan on incidents_2024_09 incidents_21  (cost=0.00..1828.44 rows=1 width=64) (actual time=12.863..12.863 rows=0.00 loops=1)
+                           Filter: (device_id = 12345)
+                           Rows Removed by Filter: 27396
+                           Buffers: shared read=1627 written=253
+                           I/O Timings: shared read=0.552 write=0.985
+                     ->  Parallel Seq Scan on incidents_2024_02 incidents_14  (cost=0.00..1792.73 rows=1 width=64) (actual time=10.913..10.914 rows=0.00 loops=1)
+                           Filter: (device_id = 12345)
+                           Rows Removed by Filter: 26483
+                           Buffers: shared read=1598
+                           I/O Timings: shared read=2.354
+                     ->  Parallel Seq Scan on incidents_2023_02 incidents_2  (cost=0.00..1718.03 rows=1 width=64) (actual time=2.085..11.753 rows=1.00 loops=1)
+                           Filter: (device_id = 12345)
+                           Rows Removed by Filter: 25571
+                           Buffers: shared read=1530
+                           I/O Timings: shared read=5.098
+                     ->  Parallel Seq Scan on incidents_2025_02 incidents_26  (cost=0.00..1718.01 rows=1 width=64) (actual time=6.451..6.451 rows=0.00 loops=1)
+                           Filter: (device_id = 12345)
+                           Rows Removed by Filter: 25570
+                           Buffers: shared read=1530
+                           I/O Timings: shared read=0.285
+                     ->  Parallel Seq Scan on incidents_default incidents_37  (cost=0.00..0.00 rows=1 width=56) (actual time=0.002..0.002 rows=0.00 loops=1)
+                           Filter: (device_id = 12345)
+ Settings: work_mem = '32MB', random_page_cost = '1.1'
+ Planning:
+   Buffers: shared hit=2230 read=113
+   I/O Timings: shared read=0.571
+ Planning Time: 4.546 ms
+ Execution Time: 128.200 ms
+(204 rows)
+

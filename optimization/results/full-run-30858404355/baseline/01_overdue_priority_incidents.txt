@@ -1,0 +1,210 @@
+                                                                                                            QUERY PLAN                                                                                                            
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Limit  (cost=72221.06..72244.35 rows=200 width=24) (actual time=497.849..503.992 rows=200.00 loops=1)
+   Buffers: shared hit=268 read=59437 written=2844
+   I/O Timings: shared read=42.250 write=10.358
+   ->  Gather Merge  (cost=72221.06..75482.47 rows=28003 width=24) (actual time=497.847..503.973 rows=200.00 loops=1)
+         Workers Planned: 2
+         Workers Launched: 2
+         Buffers: shared hit=268 read=59437 written=2844
+         I/O Timings: shared read=42.250 write=10.358
+         ->  Sort  (cost=71221.03..71250.20 rows=11668 width=24) (actual time=492.357..492.384 rows=133.67 loops=3)
+               Sort Key: incidents.sla_due_at
+               Sort Method: top-N heapsort  Memory: 49kB
+               Buffers: shared hit=268 read=59437 written=2844
+               I/O Timings: shared read=42.250 write=10.358
+               Worker 0:  Sort Method: top-N heapsort  Memory: 48kB
+               Worker 1:  Sort Method: top-N heapsort  Memory: 48kB
+               ->  Parallel Append  (cost=0.00..70716.75 rows=11668 width=24) (actual time=0.123..489.217 rows=9357.00 loops=3)
+                     Buffers: shared hit=192 read=59437 written=2844
+                     I/O Timings: shared read=42.250 write=10.358
+                     ->  Parallel Seq Scan on incidents_2023_01 incidents_1  (cost=0.00..2003.26 rows=528 width=24) (actual time=0.126..13.839 rows=891.00 loops=1)
+                           Filter: ((priority = ANY ('{P1,P2}'::incident_priority[])) AND (sla_due_at < '2026-01-01 00:00:00+00'::timestamp with time zone) AND (status = ANY ('{OPEN,IN_PROGRESS,PENDING}'::incident_status[])))
+                           Rows Removed by Filter: 27421
+                           Buffers: shared read=1691 written=347
+                           I/O Timings: shared read=0.453 write=1.390
+                     ->  Parallel Seq Scan on incidents_2023_03 incidents_3  (cost=0.00..2003.26 rows=453 width=24) (actual time=0.148..14.454 rows=771.00 loops=1)
+                           Filter: ((priority = ANY ('{P1,P2}'::incident_priority[])) AND (sla_due_at < '2026-01-01 00:00:00+00'::timestamp with time zone) AND (status = ANY ('{OPEN,IN_PROGRESS,PENDING}'::incident_status[])))
+                           Rows Removed by Filter: 27541
+                           Buffers: shared read=1691 written=356
+                           I/O Timings: shared read=0.338 write=1.346
+                     ->  Parallel Seq Scan on incidents_2023_05 incidents_5  (cost=0.00..2003.25 rows=528 width=24) (actual time=0.241..11.811 rows=900.00 loops=1)
+                           Filter: ((priority = ANY ('{P1,P2}'::incident_priority[])) AND (sla_due_at < '2026-01-01 00:00:00+00'::timestamp with time zone) AND (status = ANY ('{OPEN,IN_PROGRESS,PENDING}'::incident_status[])))
+                           Rows Removed by Filter: 27411
+                           Buffers: shared read=1691 written=65
+                           I/O Timings: shared read=1.722 write=0.191
+                     ->  Parallel Seq Scan on incidents_2023_08 incidents_8  (cost=0.00..2003.25 rows=452 width=24) (actual time=1.086..14.860 rows=767.00 loops=1)
+                           Filter: ((priority = ANY ('{P1,P2}'::incident_priority[])) AND (sla_due_at < '2026-01-01 00:00:00+00'::timestamp with time zone) AND (status = ANY ('{OPEN,IN_PROGRESS,PENDING}'::incident_status[])))
+                           Rows Removed by Filter: 27544
+                           Buffers: shared read=1691 written=17
+                           I/O Timings: shared read=2.270 write=0.065
+                     ->  Parallel Seq Scan on incidents_2024_01 incidents_13  (cost=0.00..2003.25 rows=528 width=24) (actual time=0.072..14.646 rows=899.00 loops=1)
+                           Filter: ((priority = ANY ('{P1,P2}'::incident_priority[])) AND (sla_due_at < '2026-01-01 00:00:00+00'::timestamp with time zone) AND (status = ANY ('{OPEN,IN_PROGRESS,PENDING}'::incident_status[])))
+                           Rows Removed by Filter: 27412
+                           Buffers: shared read=1691
+                           I/O Timings: shared read=1.856
+                     ->  Parallel Seq Scan on incidents_2024_03 incidents_15  (cost=0.00..2003.25 rows=528 width=24) (actual time=0.689..13.287 rows=896.00 loops=1)
+                           Filter: ((priority = ANY ('{P1,P2}'::incident_priority[])) AND (sla_due_at < '2026-01-01 00:00:00+00'::timestamp with time zone) AND (status = ANY ('{OPEN,IN_PROGRESS,PENDING}'::incident_status[])))
+                           Rows Removed by Filter: 27415
+                           Buffers: shared read=1691 written=1
+                           I/O Timings: shared read=1.430 write=0.025
+                     ->  Parallel Seq Scan on incidents_2024_05 incidents_17  (cost=0.00..2003.25 rows=452 width=24) (actual time=0.622..11.745 rows=770.00 loops=1)
+                           Filter: ((priority = ANY ('{P1,P2}'::incident_priority[])) AND (sla_due_at < '2026-01-01 00:00:00+00'::timestamp with time zone) AND (status = ANY ('{OPEN,IN_PROGRESS,PENDING}'::incident_status[])))
+                           Rows Removed by Filter: 27541
+                           Buffers: shared read=1691 written=90
+                           I/O Timings: shared read=1.865 write=0.286
+                     ->  Parallel Seq Scan on incidents_2024_08 incidents_20  (cost=0.00..2003.25 rows=452 width=24) (actual time=0.242..132.267 rows=769.00 loops=1)
+                           Filter: ((priority = ANY ('{P1,P2}'::incident_priority[])) AND (sla_due_at < '2026-01-01 00:00:00+00'::timestamp with time zone) AND (status = ANY ('{OPEN,IN_PROGRESS,PENDING}'::incident_status[])))
+                           Rows Removed by Filter: 27542
+                           Buffers: shared read=1691 written=237
+                           I/O Timings: shared read=1.788 write=0.728
+                     ->  Parallel Seq Scan on incidents_2024_10 incidents_22  (cost=0.00..2003.25 rows=452 width=24) (actual time=0.084..130.436 rows=769.00 loops=1)
+                           Filter: ((priority = ANY ('{P1,P2}'::incident_priority[])) AND (sla_due_at < '2026-01-01 00:00:00+00'::timestamp with time zone) AND (status = ANY ('{OPEN,IN_PROGRESS,PENDING}'::incident_status[])))
+                           Rows Removed by Filter: 27542
+                           Buffers: shared read=1691 written=268
+                           I/O Timings: shared read=0.233 write=0.880
+                     ->  Parallel Seq Scan on incidents_2025_01 incidents_25  (cost=0.00..2003.25 rows=452 width=24) (actual time=0.376..14.614 rows=769.00 loops=1)
+                           Filter: ((priority = ANY ('{P1,P2}'::incident_priority[])) AND (sla_due_at < '2026-01-01 00:00:00+00'::timestamp with time zone) AND (status = ANY ('{OPEN,IN_PROGRESS,PENDING}'::incident_status[])))
+                           Rows Removed by Filter: 27542
+                           Buffers: shared read=1691 written=38
+                           I/O Timings: shared read=0.445 write=0.161
+                     ->  Parallel Seq Scan on incidents_2025_03 incidents_27  (cost=0.00..2003.25 rows=527 width=24) (actual time=0.179..13.830 rows=898.00 loops=1)
+                           Filter: ((priority = ANY ('{P1,P2}'::incident_priority[])) AND (sla_due_at < '2026-01-01 00:00:00+00'::timestamp with time zone) AND (status = ANY ('{OPEN,IN_PROGRESS,PENDING}'::incident_status[])))
+                           Rows Removed by Filter: 27413
+                           Buffers: shared read=1691
+                           I/O Timings: shared read=0.448
+                     ->  Parallel Seq Scan on incidents_2025_08 incidents_32  (cost=0.00..2003.25 rows=453 width=24) (actual time=0.401..11.677 rows=770.00 loops=1)
+                           Filter: ((priority = ANY ('{P1,P2}'::incident_priority[])) AND (sla_due_at < '2026-01-01 00:00:00+00'::timestamp with time zone) AND (status = ANY ('{OPEN,IN_PROGRESS,PENDING}'::incident_status[])))
+                           Rows Removed by Filter: 27541
+                           Buffers: shared read=1691
+                           I/O Timings: shared read=0.671
+                     ->  Parallel Seq Scan on incidents_2023_07 incidents_7  (cost=0.00..2003.24 rows=452 width=24) (actual time=0.252..85.150 rows=771.00 loops=1)
+                           Filter: ((priority = ANY ('{P1,P2}'::incident_priority[])) AND (sla_due_at < '2026-01-01 00:00:00+00'::timestamp with time zone) AND (status = ANY ('{OPEN,IN_PROGRESS,PENDING}'::incident_status[])))
+                           Rows Removed by Filter: 27539
+                           Buffers: shared read=1691 written=210
+                           I/O Timings: shared read=0.837 write=0.729
+                     ->  Parallel Seq Scan on incidents_2023_10 incidents_10  (cost=0.00..2003.24 rows=452 width=24) (actual time=0.122..234.199 rows=772.00 loops=1)
+                           Filter: ((priority = ANY ('{P1,P2}'::incident_priority[])) AND (sla_due_at < '2026-01-01 00:00:00+00'::timestamp with time zone) AND (status = ANY ('{OPEN,IN_PROGRESS,PENDING}'::incident_status[])))
+                           Rows Removed by Filter: 27538
+                           Buffers: shared read=1691 written=312
+                           I/O Timings: shared read=0.597 write=0.990
+                     ->  Parallel Seq Scan on incidents_2023_12 incidents_12  (cost=0.00..2003.24 rows=452 width=24) (actual time=148.511..159.589 rows=772.00 loops=1)
+                           Filter: ((priority = ANY ('{P1,P2}'::incident_priority[])) AND (sla_due_at < '2026-01-01 00:00:00+00'::timestamp with time zone) AND (status = ANY ('{OPEN,IN_PROGRESS,PENDING}'::incident_status[])))
+                           Rows Removed by Filter: 27538
+                           Buffers: shared read=1691 written=85
+                           I/O Timings: shared read=0.745 write=0.305
+                     ->  Parallel Seq Scan on incidents_2024_07 incidents_19  (cost=0.00..2003.24 rows=452 width=24) (actual time=0.069..12.954 rows=770.00 loops=1)
+                           Filter: ((priority = ANY ('{P1,P2}'::incident_priority[])) AND (sla_due_at < '2026-01-01 00:00:00+00'::timestamp with time zone) AND (status = ANY ('{OPEN,IN_PROGRESS,PENDING}'::incident_status[])))
+                           Rows Removed by Filter: 27540
+                           Buffers: shared read=1691 written=27
+                           I/O Timings: shared read=0.557 write=0.112
+                     ->  Parallel Seq Scan on incidents_2024_12 incidents_24  (cost=0.00..2003.24 rows=528 width=24) (actual time=0.118..10.926 rows=899.00 loops=1)
+                           Filter: ((priority = ANY ('{P1,P2}'::incident_priority[])) AND (sla_due_at < '2026-01-01 00:00:00+00'::timestamp with time zone) AND (status = ANY ('{OPEN,IN_PROGRESS,PENDING}'::incident_status[])))
+                           Rows Removed by Filter: 27411
+                           Buffers: shared hit=188 read=1503 written=2
+                           I/O Timings: shared read=1.639 write=0.012
+                     ->  Parallel Seq Scan on incidents_2025_05 incidents_29  (cost=0.00..2003.24 rows=452 width=24) (actual time=0.075..11.151 rows=768.00 loops=1)
+                           Filter: ((priority = ANY ('{P1,P2}'::incident_priority[])) AND (sla_due_at < '2026-01-01 00:00:00+00'::timestamp with time zone) AND (status = ANY ('{OPEN,IN_PROGRESS,PENDING}'::incident_status[])))
+                           Rows Removed by Filter: 27542
+                           Buffers: shared read=1691
+                           I/O Timings: shared read=0.392
+                     ->  Parallel Seq Scan on incidents_2025_07 incidents_31  (cost=0.00..2003.24 rows=452 width=24) (actual time=0.489..11.318 rows=767.00 loops=1)
+                           Filter: ((priority = ANY ('{P1,P2}'::incident_priority[])) AND (sla_due_at < '2026-01-01 00:00:00+00'::timestamp with time zone) AND (status = ANY ('{OPEN,IN_PROGRESS,PENDING}'::incident_status[])))
+                           Rows Removed by Filter: 27543
+                           Buffers: shared read=1691
+                           I/O Timings: shared read=0.696
+                     ->  Parallel Seq Scan on incidents_2025_10 incidents_34  (cost=0.00..2003.24 rows=452 width=24) (actual time=0.939..11.625 rows=766.00 loops=1)
+                           Filter: ((priority = ANY ('{P1,P2}'::incident_priority[])) AND (sla_due_at < '2026-01-01 00:00:00+00'::timestamp with time zone) AND (status = ANY ('{OPEN,IN_PROGRESS,PENDING}'::incident_status[])))
+                           Rows Removed by Filter: 27544
+                           Buffers: shared read=1691
+                           I/O Timings: shared read=2.258
+                     ->  Parallel Seq Scan on incidents_2023_04 incidents_4  (cost=0.00..1929.19 rows=452 width=24) (actual time=0.082..11.179 rows=771.00 loops=1)
+                           Filter: ((priority = ANY ('{P1,P2}'::incident_priority[])) AND (sla_due_at < '2026-01-01 00:00:00+00'::timestamp with time zone) AND (status = ANY ('{OPEN,IN_PROGRESS,PENDING}'::incident_status[])))
+                           Rows Removed by Filter: 26628
+                           Buffers: shared read=1627
+                           I/O Timings: shared read=1.462
+                     ->  Parallel Seq Scan on incidents_2023_06 incidents_6  (cost=0.00..1929.17 rows=452 width=24) (actual time=0.106..10.933 rows=771.00 loops=1)
+                           Filter: ((priority = ANY ('{P1,P2}'::incident_priority[])) AND (sla_due_at < '2026-01-01 00:00:00+00'::timestamp with time zone) AND (status = ANY ('{OPEN,IN_PROGRESS,PENDING}'::incident_status[])))
+                           Rows Removed by Filter: 26626
+                           Buffers: shared read=1627
+                           I/O Timings: shared read=1.148
+                     ->  Parallel Seq Scan on incidents_2023_09 incidents_9  (cost=0.00..1929.17 rows=452 width=24) (actual time=0.130..3.689 rows=255.33 loops=3)
+                           Filter: ((priority = ANY ('{P1,P2}'::incident_priority[])) AND (sla_due_at < '2026-01-01 00:00:00+00'::timestamp with time zone) AND (status = ANY ('{OPEN,IN_PROGRESS,PENDING}'::incident_status[])))
+                           Rows Removed by Filter: 8877
+                           Buffers: shared read=1627
+                           I/O Timings: shared read=1.977
+                     ->  Parallel Seq Scan on incidents_2023_11 incidents_11  (cost=0.00..1929.17 rows=453 width=24) (actual time=0.093..5.432 rows=385.50 loops=2)
+                           Filter: ((priority = ANY ('{P1,P2}'::incident_priority[])) AND (sla_due_at < '2026-01-01 00:00:00+00'::timestamp with time zone) AND (status = ANY ('{OPEN,IN_PROGRESS,PENDING}'::incident_status[])))
+                           Rows Removed by Filter: 13313
+                           Buffers: shared read=1627
+                           I/O Timings: shared read=0.306
+                     ->  Parallel Seq Scan on incidents_2024_06 incidents_18  (cost=0.00..1929.17 rows=452 width=24) (actual time=0.218..10.033 rows=771.00 loops=1)
+                           Filter: ((priority = ANY ('{P1,P2}'::incident_priority[])) AND (sla_due_at < '2026-01-01 00:00:00+00'::timestamp with time zone) AND (status = ANY ('{OPEN,IN_PROGRESS,PENDING}'::incident_status[])))
+                           Rows Removed by Filter: 26626
+                           Buffers: shared read=1627 written=3
+                           I/O Timings: shared read=1.749 write=0.047
+                     ->  Parallel Seq Scan on incidents_2024_11 incidents_23  (cost=0.00..1929.17 rows=452 width=24) (actual time=1.694..12.123 rows=762.00 loops=1)
+                           Filter: ((priority = ANY ('{P1,P2}'::incident_priority[])) AND (sla_due_at < '2026-01-01 00:00:00+00'::timestamp with time zone) AND (status = ANY ('{OPEN,IN_PROGRESS,PENDING}'::incident_status[])))
+                           Rows Removed by Filter: 26635
+                           Buffers: shared hit=4 read=1623
+                           I/O Timings: shared read=2.338
+                     ->  Parallel Seq Scan on incidents_2025_04 incidents_28  (cost=0.00..1929.17 rows=452 width=24) (actual time=0.612..13.175 rows=769.00 loops=1)
+                           Filter: ((priority = ANY ('{P1,P2}'::incident_priority[])) AND (sla_due_at < '2026-01-01 00:00:00+00'::timestamp with time zone) AND (status = ANY ('{OPEN,IN_PROGRESS,PENDING}'::incident_status[])))
+                           Rows Removed by Filter: 26628
+                           Buffers: shared read=1627 written=1
+                           I/O Timings: shared read=2.929 write=0.006
+                     ->  Parallel Seq Scan on incidents_2025_06 incidents_30  (cost=0.00..1929.17 rows=452 width=24) (actual time=72.021..235.232 rows=765.00 loops=1)
+                           Filter: ((priority = ANY ('{P1,P2}'::incident_priority[])) AND (sla_due_at < '2026-01-01 00:00:00+00'::timestamp with time zone) AND (status = ANY ('{OPEN,IN_PROGRESS,PENDING}'::incident_status[])))
+                           Rows Removed by Filter: 26632
+                           Buffers: shared read=1627 written=121
+                           I/O Timings: shared read=2.705 write=0.387
+                     ->  Parallel Seq Scan on incidents_2025_09 incidents_33  (cost=0.00..1929.17 rows=452 width=24) (actual time=0.174..12.196 rows=770.00 loops=1)
+                           Filter: ((priority = ANY ('{P1,P2}'::incident_priority[])) AND (sla_due_at < '2026-01-01 00:00:00+00'::timestamp with time zone) AND (status = ANY ('{OPEN,IN_PROGRESS,PENDING}'::incident_status[])))
+                           Rows Removed by Filter: 26627
+                           Buffers: shared read=1627 written=80
+                           I/O Timings: shared read=0.691 write=0.476
+                     ->  Parallel Seq Scan on incidents_2025_11 incidents_35  (cost=0.00..1929.17 rows=452 width=24) (actual time=0.206..11.184 rows=769.00 loops=1)
+                           Filter: ((priority = ANY ('{P1,P2}'::incident_priority[])) AND (sla_due_at < '2026-01-01 00:00:00+00'::timestamp with time zone) AND (status = ANY ('{OPEN,IN_PROGRESS,PENDING}'::incident_status[])))
+                           Rows Removed by Filter: 26628
+                           Buffers: shared read=1627
+                           I/O Timings: shared read=1.346
+                     ->  Parallel Seq Scan on incidents_2025_12 incidents_36  (cost=0.00..1929.17 rows=425 width=24) (actual time=0.315..133.502 rows=770.00 loops=1)
+                           Filter: ((priority = ANY ('{P1,P2}'::incident_priority[])) AND (sla_due_at < '2026-01-01 00:00:00+00'::timestamp with time zone) AND (status = ANY ('{OPEN,IN_PROGRESS,PENDING}'::incident_status[])))
+                           Rows Removed by Filter: 26627
+                           Buffers: shared read=1627 written=193
+                           I/O Timings: shared read=0.498 write=0.684
+                     ->  Parallel Seq Scan on incidents_2024_04 incidents_16  (cost=0.00..1929.16 rows=452 width=24) (actual time=0.061..12.217 rows=767.00 loops=1)
+                           Filter: ((priority = ANY ('{P1,P2}'::incident_priority[])) AND (sla_due_at < '2026-01-01 00:00:00+00'::timestamp with time zone) AND (status = ANY ('{OPEN,IN_PROGRESS,PENDING}'::incident_status[])))
+                           Rows Removed by Filter: 26629
+                           Buffers: shared read=1627 written=52
+                           I/O Timings: shared read=0.176 write=0.158
+                     ->  Parallel Seq Scan on incidents_2024_09 incidents_21  (cost=0.00..1929.16 rows=452 width=24) (actual time=0.151..8.902 rows=771.00 loops=1)
+                           Filter: ((priority = ANY ('{P1,P2}'::incident_priority[])) AND (sla_due_at < '2026-01-01 00:00:00+00'::timestamp with time zone) AND (status = ANY ('{OPEN,IN_PROGRESS,PENDING}'::incident_status[])))
+                           Rows Removed by Filter: 26625
+                           Buffers: shared read=1627
+                           I/O Timings: shared read=0.424
+                     ->  Parallel Seq Scan on incidents_2024_02 incidents_14  (cost=0.00..1890.09 rows=377 width=24) (actual time=0.207..10.147 rows=642.00 loops=1)
+                           Filter: ((priority = ANY ('{P1,P2}'::incident_priority[])) AND (sla_due_at < '2026-01-01 00:00:00+00'::timestamp with time zone) AND (status = ANY ('{OPEN,IN_PROGRESS,PENDING}'::incident_status[])))
+                           Rows Removed by Filter: 25841
+                           Buffers: shared read=1598 written=12
+                           I/O Timings: shared read=1.839 write=0.038
+                     ->  Parallel Seq Scan on incidents_2023_02 incidents_2  (cost=0.00..1812.04 rows=376 width=24) (actual time=0.327..13.022 rows=643.00 loops=1)
+                           Filter: ((priority = ANY ('{P1,P2}'::incident_priority[])) AND (sla_due_at < '2026-01-01 00:00:00+00'::timestamp with time zone) AND (status = ANY ('{OPEN,IN_PROGRESS,PENDING}'::incident_status[])))
+                           Rows Removed by Filter: 24929
+                           Buffers: shared read=1530 written=293
+                           I/O Timings: shared read=0.816 write=1.166
+                     ->  Parallel Seq Scan on incidents_2025_02 incidents_26  (cost=0.00..1812.02 rows=377 width=24) (actual time=0.089..13.496 rows=639.00 loops=1)
+                           Filter: ((priority = ANY ('{P1,P2}'::incident_priority[])) AND (sla_due_at < '2026-01-01 00:00:00+00'::timestamp with time zone) AND (status = ANY ('{OPEN,IN_PROGRESS,PENDING}'::incident_status[])))
+                           Rows Removed by Filter: 24931
+                           Buffers: shared read=1530 written=34
+                           I/O Timings: shared read=0.606 write=0.175
+                     ->  Parallel Seq Scan on incidents_default incidents_37  (cost=0.00..0.00 rows=1 width=24) (actual time=0.001..0.002 rows=0.00 loops=1)
+                           Filter: ((priority = ANY ('{P1,P2}'::incident_priority[])) AND (sla_due_at < '2026-01-01 00:00:00+00'::timestamp with time zone) AND (status = ANY ('{OPEN,IN_PROGRESS,PENDING}'::incident_status[])))
+ Settings: work_mem = '32MB', random_page_cost = '1.1'
+ Planning:
+   Buffers: shared hit=2123 read=43
+   I/O Timings: shared read=0.231
+ Planning Time: 4.729 ms
+ Execution Time: 504.282 ms
+(206 rows)
+

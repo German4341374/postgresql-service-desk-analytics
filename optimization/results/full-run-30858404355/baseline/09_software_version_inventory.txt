@@ -1,0 +1,24 @@
+                                                                                               QUERY PLAN                                                                                               
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Sort  (cost=9100.57..9100.72 rows=61 width=14) (actual time=15.626..15.627 rows=2.00 loops=1)
+   Sort Key: (count(*)) DESC
+   Sort Method: quicksort  Memory: 25kB
+   Buffers: shared hit=4279
+   ->  GroupAggregate  (cost=9089.17..9098.76 rows=61 width=14) (actual time=15.534..15.614 rows=2.00 loops=1)
+         Group Key: installed_version
+         Buffers: shared hit=4276
+         ->  Sort  (cost=9089.17..9092.16 rows=1198 width=6) (actual time=15.487..15.533 rows=1200.00 loops=1)
+               Sort Key: installed_version
+               Sort Method: quicksort  Memory: 49kB
+               Buffers: shared hit=4276
+               ->  Index Scan using software_installations_device_id_software_id_key on software_installations  (cost=0.42..9027.91 rows=1198 width=6) (actual time=0.057..15.349 rows=1200.00 loops=1)
+                     Index Cond: (software_id = 42)
+                     Index Searches: 1
+                     Buffers: shared hit=4273
+ Settings: work_mem = '32MB', random_page_cost = '1.1'
+ Planning:
+   Buffers: shared hit=123
+ Planning Time: 0.309 ms
+ Execution Time: 15.683 ms
+(20 rows)
+

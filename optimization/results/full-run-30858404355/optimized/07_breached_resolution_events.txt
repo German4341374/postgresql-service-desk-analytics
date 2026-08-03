@@ -1,0 +1,15 @@
+                                                                                                  QUERY PLAN                                                                                                  
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Limit  (cost=0.42..208.90 rows=500 width=24) (actual time=0.021..0.452 rows=500.00 loops=1)
+   Buffers: shared hit=505
+   ->  Index Scan using idx_sla_breach_target on sla_events  (cost=0.42..4821.20 rows=11562 width=24) (actual time=0.020..0.401 rows=500.00 loops=1)
+         Index Cond: ((event_type = 'RESOLUTION'::sla_event_type) AND (target_at >= '2025-10-01 00:00:00+00'::timestamp with time zone) AND (target_at < '2025-11-01 00:00:00+00'::timestamp with time zone))
+         Index Searches: 1
+         Buffers: shared hit=505
+ Settings: work_mem = '32MB', random_page_cost = '1.1'
+ Planning:
+   Buffers: shared hit=161
+ Planning Time: 0.428 ms
+ Execution Time: 0.487 ms
+(11 rows)
+

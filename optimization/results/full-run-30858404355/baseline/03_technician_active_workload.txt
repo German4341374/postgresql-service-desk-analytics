@@ -1,0 +1,215 @@
+                                                                              QUERY PLAN                                                                               
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Finalize GroupAggregate  (cost=70189.07..70190.65 rows=4 width=12) (actual time=203.616..208.525 rows=2.00 loops=1)
+   Group Key: incidents.priority
+   Buffers: shared hit=385 read=59326 written=488
+   I/O Timings: shared read=65.092 write=2.049
+   ->  Gather Merge  (cost=70189.07..70190.56 rows=10 width=12) (actual time=203.605..208.518 rows=6.00 loops=1)
+         Workers Planned: 2
+         Workers Launched: 2
+         Buffers: shared hit=385 read=59326 written=488
+         I/O Timings: shared read=65.092 write=2.049
+         ->  Partial GroupAggregate  (cost=69189.05..69189.38 rows=4 width=12) (actual time=197.436..197.451 rows=2.00 loops=3)
+               Group Key: incidents.priority
+               Buffers: shared hit=385 read=59326 written=488
+               I/O Timings: shared read=65.092 write=2.049
+               ->  Sort  (cost=69189.05..69189.15 rows=39 width=4) (actual time=197.421..197.433 rows=46.67 loops=3)
+                     Sort Key: incidents.priority
+                     Sort Method: quicksort  Memory: 25kB
+                     Buffers: shared hit=385 read=59326 written=488
+                     I/O Timings: shared read=65.092 write=2.049
+                     Worker 0:  Sort Method: quicksort  Memory: 25kB
+                     Worker 1:  Sort Method: quicksort  Memory: 25kB
+                     ->  Parallel Append  (cost=0.00..69188.02 rows=39 width=4) (actual time=3.236..197.349 rows=46.67 loops=3)
+                           Buffers: shared hit=309 read=59326 written=488
+                           I/O Timings: shared read=65.092 write=2.049
+                           ->  Parallel Seq Scan on incidents_2023_01 incidents_1  (cost=0.00..1961.63 rows=2 width=4) (actual time=2.928..10.563 rows=4.00 loops=1)
+                                 Filter: ((assignee_id = 777) AND (status = ANY ('{OPEN,IN_PROGRESS,PENDING}'::incident_status[])))
+                                 Rows Removed by Filter: 28308
+                                 Buffers: shared hit=3 read=1691
+                                 I/O Timings: shared read=0.384
+                           ->  Parallel Seq Scan on incidents_2023_03 incidents_3  (cost=0.00..1961.63 rows=2 width=4) (actual time=4.081..11.655 rows=3.00 loops=1)
+                                 Filter: ((assignee_id = 777) AND (status = ANY ('{OPEN,IN_PROGRESS,PENDING}'::incident_status[])))
+                                 Rows Removed by Filter: 28309
+                                 Buffers: shared hit=3 read=1691
+                                 I/O Timings: shared read=2.254
+                           ->  Parallel Seq Scan on incidents_2023_05 incidents_5  (cost=0.00..1961.62 rows=2 width=4) (actual time=3.978..11.026 rows=3.00 loops=1)
+                                 Filter: ((assignee_id = 777) AND (status = ANY ('{OPEN,IN_PROGRESS,PENDING}'::incident_status[])))
+                                 Rows Removed by Filter: 28308
+                                 Buffers: shared read=1691
+                                 I/O Timings: shared read=2.380
+                           ->  Parallel Seq Scan on incidents_2023_08 incidents_8  (cost=0.00..1961.62 rows=2 width=4) (actual time=1.453..7.933 rows=3.00 loops=1)
+                                 Filter: ((assignee_id = 777) AND (status = ANY ('{OPEN,IN_PROGRESS,PENDING}'::incident_status[])))
+                                 Rows Removed by Filter: 28308
+                                 Buffers: shared read=1691
+                                 I/O Timings: shared read=0.459
+                           ->  Parallel Seq Scan on incidents_2024_01 incidents_13  (cost=0.00..1961.62 rows=2 width=4) (actual time=1.861..10.753 rows=3.00 loops=1)
+                                 Filter: ((assignee_id = 777) AND (status = ANY ('{OPEN,IN_PROGRESS,PENDING}'::incident_status[])))
+                                 Rows Removed by Filter: 28308
+                                 Buffers: shared read=1691
+                                 I/O Timings: shared read=3.173
+                           ->  Parallel Seq Scan on incidents_2024_03 incidents_15  (cost=0.00..1961.62 rows=2 width=4) (actual time=3.457..8.912 rows=3.00 loops=1)
+                                 Filter: ((assignee_id = 777) AND (status = ANY ('{OPEN,IN_PROGRESS,PENDING}'::incident_status[])))
+                                 Rows Removed by Filter: 28308
+                                 Buffers: shared read=1691
+                                 I/O Timings: shared read=1.489
+                           ->  Parallel Seq Scan on incidents_2024_05 incidents_17  (cost=0.00..1961.62 rows=2 width=4) (actual time=5.388..9.087 rows=3.00 loops=1)
+                                 Filter: ((assignee_id = 777) AND (status = ANY ('{OPEN,IN_PROGRESS,PENDING}'::incident_status[])))
+                                 Rows Removed by Filter: 28308
+                                 Buffers: shared read=1691
+                                 I/O Timings: shared read=0.960
+                           ->  Parallel Seq Scan on incidents_2024_08 incidents_20  (cost=0.00..1961.62 rows=2 width=4) (actual time=1.114..12.059 rows=4.00 loops=1)
+                                 Filter: ((assignee_id = 777) AND (status = ANY ('{OPEN,IN_PROGRESS,PENDING}'::incident_status[])))
+                                 Rows Removed by Filter: 28307
+                                 Buffers: shared read=1691
+                                 I/O Timings: shared read=2.387
+                           ->  Parallel Seq Scan on incidents_2024_10 incidents_22  (cost=0.00..1961.62 rows=3 width=4) (actual time=1.909..8.439 rows=6.00 loops=1)
+                                 Filter: ((assignee_id = 777) AND (status = ANY ('{OPEN,IN_PROGRESS,PENDING}'::incident_status[])))
+                                 Rows Removed by Filter: 28305
+                                 Buffers: shared read=1691
+                                 I/O Timings: shared read=0.244
+                           ->  Parallel Seq Scan on incidents_2025_01 incidents_25  (cost=0.00..1961.62 rows=2 width=4) (actual time=0.597..10.245 rows=4.00 loops=1)
+                                 Filter: ((assignee_id = 777) AND (status = ANY ('{OPEN,IN_PROGRESS,PENDING}'::incident_status[])))
+                                 Rows Removed by Filter: 28307
+                                 Buffers: shared read=1691
+                                 I/O Timings: shared read=0.891
+                           ->  Parallel Seq Scan on incidents_2025_03 incidents_27  (cost=0.00..1961.62 rows=2 width=4) (actual time=0.590..12.010 rows=5.00 loops=1)
+                                 Filter: ((assignee_id = 777) AND (status = ANY ('{OPEN,IN_PROGRESS,PENDING}'::incident_status[])))
+                                 Rows Removed by Filter: 28306
+                                 Buffers: shared hit=46 read=1645
+                                 I/O Timings: shared read=3.040
+                           ->  Parallel Seq Scan on incidents_2025_08 incidents_32  (cost=0.00..1961.62 rows=2 width=4) (actual time=0.448..10.432 rows=4.00 loops=1)
+                                 Filter: ((assignee_id = 777) AND (status = ANY ('{OPEN,IN_PROGRESS,PENDING}'::incident_status[])))
+                                 Rows Removed by Filter: 28307
+                                 Buffers: shared read=1691
+                                 I/O Timings: shared read=1.458
+                           ->  Parallel Seq Scan on incidents_2023_07 incidents_7  (cost=0.00..1961.61 rows=2 width=4) (actual time=4.125..8.991 rows=4.00 loops=1)
+                                 Filter: ((assignee_id = 777) AND (status = ANY ('{OPEN,IN_PROGRESS,PENDING}'::incident_status[])))
+                                 Rows Removed by Filter: 28306
+                                 Buffers: shared read=1691
+                                 I/O Timings: shared read=1.334
+                           ->  Parallel Seq Scan on incidents_2023_10 incidents_10  (cost=0.00..1961.61 rows=2 width=4) (actual time=2.088..40.406 rows=4.00 loops=1)
+                                 Filter: ((assignee_id = 777) AND (status = ANY ('{OPEN,IN_PROGRESS,PENDING}'::incident_status[])))
+                                 Rows Removed by Filter: 28306
+                                 Buffers: shared read=1691 written=15
+                                 I/O Timings: shared read=0.372 write=0.071
+                           ->  Parallel Seq Scan on incidents_2023_12 incidents_12  (cost=0.00..1961.61 rows=2 width=4) (actual time=34.064..39.630 rows=5.00 loops=1)
+                                 Filter: ((assignee_id = 777) AND (status = ANY ('{OPEN,IN_PROGRESS,PENDING}'::incident_status[])))
+                                 Rows Removed by Filter: 28305
+                                 Buffers: shared read=1691 written=31
+                                 I/O Timings: shared read=1.710 write=0.101
+                           ->  Parallel Seq Scan on incidents_2024_07 incidents_19  (cost=0.00..1961.61 rows=2 width=4) (actual time=4.269..10.376 rows=2.00 loops=1)
+                                 Filter: ((assignee_id = 777) AND (status = ANY ('{OPEN,IN_PROGRESS,PENDING}'::incident_status[])))
+                                 Rows Removed by Filter: 28308
+                                 Buffers: shared read=1691
+                                 I/O Timings: shared read=2.012
+                           ->  Parallel Seq Scan on incidents_2024_12 incidents_24  (cost=0.00..1961.61 rows=2 width=4) (actual time=2.701..9.669 rows=4.00 loops=1)
+                                 Filter: ((assignee_id = 777) AND (status = ANY ('{OPEN,IN_PROGRESS,PENDING}'::incident_status[])))
+                                 Rows Removed by Filter: 28306
+                                 Buffers: shared read=1691 written=1
+                                 I/O Timings: shared read=3.037 write=0.008
+                           ->  Parallel Seq Scan on incidents_2025_05 incidents_29  (cost=0.00..1961.61 rows=2 width=4) (actual time=2.989..11.894 rows=4.00 loops=1)
+                                 Filter: ((assignee_id = 777) AND (status = ANY ('{OPEN,IN_PROGRESS,PENDING}'::incident_status[])))
+                                 Rows Removed by Filter: 28306
+                                 Buffers: shared read=1691 written=16
+                                 I/O Timings: shared read=2.183 write=0.074
+                           ->  Parallel Seq Scan on incidents_2025_07 incidents_31  (cost=0.00..1961.61 rows=2 width=4) (actual time=2.166..10.498 rows=5.00 loops=1)
+                                 Filter: ((assignee_id = 777) AND (status = ANY ('{OPEN,IN_PROGRESS,PENDING}'::incident_status[])))
+                                 Rows Removed by Filter: 28305
+                                 Buffers: shared read=1691
+                                 I/O Timings: shared read=2.771
+                           ->  Parallel Seq Scan on incidents_2025_10 incidents_34  (cost=0.00..1961.61 rows=3 width=4) (actual time=4.463..11.700 rows=4.00 loops=1)
+                                 Filter: ((assignee_id = 777) AND (status = ANY ('{OPEN,IN_PROGRESS,PENDING}'::incident_status[])))
+                                 Rows Removed by Filter: 28306
+                                 Buffers: shared read=1691
+                                 I/O Timings: shared read=2.529
+                           ->  Parallel Seq Scan on incidents_2023_04 incidents_4  (cost=0.00..1888.90 rows=2 width=4) (actual time=0.932..10.196 rows=4.00 loops=1)
+                                 Filter: ((assignee_id = 777) AND (status = ANY ('{OPEN,IN_PROGRESS,PENDING}'::incident_status[])))
+                                 Rows Removed by Filter: 27395
+                                 Buffers: shared read=1627
+                                 I/O Timings: shared read=2.773
+                           ->  Parallel Seq Scan on incidents_2023_06 incidents_6  (cost=0.00..1888.88 rows=2 width=4) (actual time=1.181..52.476 rows=4.00 loops=1)
+                                 Filter: ((assignee_id = 777) AND (status = ANY ('{OPEN,IN_PROGRESS,PENDING}'::incident_status[])))
+                                 Rows Removed by Filter: 27393
+                                 Buffers: shared read=1627 written=144
+                                 I/O Timings: shared read=0.759 write=0.581
+                           ->  Parallel Seq Scan on incidents_2023_09 incidents_9  (cost=0.00..1888.88 rows=2 width=4) (actual time=2.821..7.461 rows=4.00 loops=1)
+                                 Filter: ((assignee_id = 777) AND (status = ANY ('{OPEN,IN_PROGRESS,PENDING}'::incident_status[])))
+                                 Rows Removed by Filter: 27393
+                                 Buffers: shared read=1627 written=46
+                                 I/O Timings: shared read=0.101 write=0.165
+                           ->  Parallel Seq Scan on incidents_2023_11 incidents_11  (cost=0.00..1888.88 rows=2 width=4) (actual time=43.228..46.969 rows=4.00 loops=1)
+                                 Filter: ((assignee_id = 777) AND (status = ANY ('{OPEN,IN_PROGRESS,PENDING}'::incident_status[])))
+                                 Rows Removed by Filter: 27393
+                                 Buffers: shared read=1627 written=105
+                                 I/O Timings: shared read=0.417 write=0.410
+                           ->  Parallel Seq Scan on incidents_2024_06 incidents_18  (cost=0.00..1888.88 rows=2 width=4) (actual time=2.368..4.318 rows=1.33 loops=3)
+                                 Filter: ((assignee_id = 777) AND (status = ANY ('{OPEN,IN_PROGRESS,PENDING}'::incident_status[])))
+                                 Rows Removed by Filter: 9131
+                                 Buffers: shared read=1627
+                                 I/O Timings: shared read=6.351
+                           ->  Parallel Seq Scan on incidents_2024_11 incidents_23  (cost=0.00..1888.88 rows=2 width=4) (actual time=4.246..50.166 rows=4.00 loops=1)
+                                 Filter: ((assignee_id = 777) AND (status = ANY ('{OPEN,IN_PROGRESS,PENDING}'::incident_status[])))
+                                 Rows Removed by Filter: 27393
+                                 Buffers: shared read=1627 written=111
+                                 I/O Timings: shared read=0.951 write=0.546
+                           ->  Parallel Seq Scan on incidents_2025_04 incidents_28  (cost=0.00..1888.88 rows=2 width=4) (actual time=3.574..10.361 rows=4.00 loops=1)
+                                 Filter: ((assignee_id = 777) AND (status = ANY ('{OPEN,IN_PROGRESS,PENDING}'::incident_status[])))
+                                 Rows Removed by Filter: 27393
+                                 Buffers: shared read=1627
+                                 I/O Timings: shared read=2.739
+                           ->  Parallel Seq Scan on incidents_2025_06 incidents_30  (cost=0.00..1888.88 rows=2 width=4) (actual time=7.292..12.734 rows=2.00 loops=1)
+                                 Filter: ((assignee_id = 777) AND (status = ANY ('{OPEN,IN_PROGRESS,PENDING}'::incident_status[])))
+                                 Rows Removed by Filter: 27395
+                                 Buffers: shared read=1627
+                                 I/O Timings: shared read=3.411
+                           ->  Parallel Seq Scan on incidents_2025_09 incidents_33  (cost=0.00..1888.88 rows=2 width=4) (actual time=2.149..8.558 rows=5.00 loops=1)
+                                 Filter: ((assignee_id = 777) AND (status = ANY ('{OPEN,IN_PROGRESS,PENDING}'::incident_status[])))
+                                 Rows Removed by Filter: 27392
+                                 Buffers: shared read=1627
+                                 I/O Timings: shared read=0.426
+                           ->  Parallel Seq Scan on incidents_2025_11 incidents_35  (cost=0.00..1888.88 rows=2 width=4) (actual time=4.181..44.651 rows=3.00 loops=1)
+                                 Filter: ((assignee_id = 777) AND (status = ANY ('{OPEN,IN_PROGRESS,PENDING}'::incident_status[])))
+                                 Rows Removed by Filter: 27394
+                                 Buffers: shared read=1627 written=18
+                                 I/O Timings: shared read=5.859 write=0.069
+                           ->  Parallel Seq Scan on incidents_2025_12 incidents_36  (cost=0.00..1888.88 rows=2 width=4) (actual time=0.879..11.349 rows=5.00 loops=1)
+                                 Filter: ((assignee_id = 777) AND (status = ANY ('{OPEN,IN_PROGRESS,PENDING}'::incident_status[])))
+                                 Rows Removed by Filter: 27392
+                                 Buffers: shared read=1627
+                                 I/O Timings: shared read=0.224
+                           ->  Parallel Seq Scan on incidents_2024_04 incidents_16  (cost=0.00..1888.87 rows=2 width=4) (actual time=0.655..12.431 rows=5.00 loops=1)
+                                 Filter: ((assignee_id = 777) AND (status = ANY ('{OPEN,IN_PROGRESS,PENDING}'::incident_status[])))
+                                 Rows Removed by Filter: 27391
+                                 Buffers: shared read=1627 written=1
+                                 I/O Timings: shared read=1.430 write=0.024
+                           ->  Parallel Seq Scan on incidents_2024_09 incidents_21  (cost=0.00..1888.87 rows=2 width=4) (actual time=6.103..15.574 rows=3.00 loops=1)
+                                 Filter: ((assignee_id = 777) AND (status = ANY ('{OPEN,IN_PROGRESS,PENDING}'::incident_status[])))
+                                 Rows Removed by Filter: 27393
+                                 Buffers: shared read=1627
+                                 I/O Timings: shared read=0.775
+                           ->  Parallel Seq Scan on incidents_2024_02 incidents_14  (cost=0.00..1851.15 rows=2 width=4) (actual time=2.040..12.024 rows=5.00 loops=1)
+                                 Filter: ((assignee_id = 777) AND (status = ANY ('{OPEN,IN_PROGRESS,PENDING}'::incident_status[])))
+                                 Rows Removed by Filter: 26478
+                                 Buffers: shared read=1598
+                                 I/O Timings: shared read=1.476
+                           ->  Parallel Seq Scan on incidents_2023_02 incidents_2  (cost=0.00..1774.44 rows=2 width=4) (actual time=2.370..10.419 rows=4.00 loops=1)
+                                 Filter: ((assignee_id = 777) AND (status = ANY ('{OPEN,IN_PROGRESS,PENDING}'::incident_status[])))
+                                 Rows Removed by Filter: 25568
+                                 Buffers: shared read=1530
+                                 I/O Timings: shared read=2.063
+                           ->  Parallel Seq Scan on incidents_2025_02 incidents_26  (cost=0.00..1774.42 rows=2 width=4) (actual time=2.694..7.221 rows=3.00 loops=1)
+                                 Filter: ((assignee_id = 777) AND (status = ANY ('{OPEN,IN_PROGRESS,PENDING}'::incident_status[])))
+                                 Rows Removed by Filter: 25567
+                                 Buffers: shared hit=257 read=1273
+                                 I/O Timings: shared read=0.269
+                           ->  Parallel Seq Scan on incidents_default incidents_37  (cost=0.00..0.00 rows=1 width=4) (actual time=0.001..0.002 rows=0.00 loops=1)
+                                 Filter: ((assignee_id = 777) AND (status = ANY ('{OPEN,IN_PROGRESS,PENDING}'::incident_status[])))
+ Settings: work_mem = '32MB', random_page_cost = '1.1'
+ Planning:
+   Buffers: shared hit=1935 read=100
+   I/O Timings: shared read=0.569
+ Planning Time: 5.446 ms
+ Execution Time: 208.810 ms
+(211 rows)
+

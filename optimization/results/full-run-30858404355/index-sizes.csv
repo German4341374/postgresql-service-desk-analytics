@@ -1,0 +1,11 @@
+idx_comments_incident_created,50675712,48 MB
+idx_sla_breach_target,34324480,33 MB
+idx_assignments_technician_active,31563776,30 MB
+idx_installations_software_version,24387584,23 MB
+idx_incidents_assignee_status,0,0 bytes
+idx_incidents_brin_created,0,0 bytes
+idx_incidents_device_created,0,0 bytes
+idx_incidents_open_priority_due,0,0 bytes
+idx_incidents_requester_created,0,0 bytes
+idx_incidents_search_gin,0,0 bytes
+idx_incidents_service_status_created,0,0 bytes

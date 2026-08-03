@@ -1,3 +1,4 @@
 * text=auto eol=lf
 *.sh text eol=lf
 *.sql text eol=lf
+optimization/results/** text eol=lf whitespace=-trailing-space,-blank-at-eof

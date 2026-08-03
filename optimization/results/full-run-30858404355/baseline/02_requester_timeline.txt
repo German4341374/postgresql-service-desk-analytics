@@ -1,0 +1,208 @@
+                                                                             QUERY PLAN                                                                             
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Limit  (cost=67986.79..67986.88 rows=37 width=64) (actual time=917.389..924.488 rows=10.00 loops=1)
+   Buffers: shared hit=271 read=59361 written=415
+   I/O Timings: shared read=60.398 write=1.585
+   ->  Sort  (cost=67986.79..67986.88 rows=37 width=64) (actual time=917.386..924.483 rows=10.00 loops=1)
+         Sort Key: incidents.created_at DESC
+         Sort Method: quicksort  Memory: 26kB
+         Buffers: shared hit=271 read=59361 written=415
+         I/O Timings: shared read=60.398 write=1.585
+         ->  Gather  (cost=1000.00..67985.83 rows=37 width=64) (actual time=5.488..924.434 rows=10.00 loops=1)
+               Workers Planned: 2
+               Workers Launched: 2
+               Buffers: shared hit=268 read=59361 written=415
+               I/O Timings: shared read=60.398 write=1.585
+               ->  Parallel Append  (cost=0.00..66982.13 rows=37 width=64) (actual time=69.076..912.055 rows=3.33 loops=3)
+                     Buffers: shared hit=268 read=59361 written=415
+                     I/O Timings: shared read=60.398 write=1.585
+                     ->  Parallel Seq Scan on incidents_2023_01 incidents_1  (cost=0.00..1899.18 rows=1 width=64) (actual time=12.362..12.362 rows=0.00 loops=1)
+                           Filter: (requester_id = 4242)
+                           Rows Removed by Filter: 28312
+                           Buffers: shared read=1691
+                           I/O Timings: shared read=0.518
+                     ->  Parallel Seq Scan on incidents_2023_03 incidents_3  (cost=0.00..1899.18 rows=1 width=64) (actual time=8.805..8.805 rows=0.00 loops=1)
+                           Filter: (requester_id = 4242)
+                           Rows Removed by Filter: 28312
+                           Buffers: shared read=1691
+                           I/O Timings: shared read=0.882
+                     ->  Parallel Seq Scan on incidents_2023_05 incidents_5  (cost=0.00..1899.17 rows=1 width=64) (actual time=8.949..8.949 rows=0.00 loops=1)
+                           Filter: (requester_id = 4242)
+                           Rows Removed by Filter: 28311
+                           Buffers: shared read=1691
+                           I/O Timings: shared read=0.567
+                     ->  Parallel Seq Scan on incidents_2023_08 incidents_8  (cost=0.00..1899.17 rows=1 width=64) (actual time=6.082..9.694 rows=1.00 loops=1)
+                           Filter: (requester_id = 4242)
+                           Rows Removed by Filter: 28310
+                           Buffers: shared read=1691
+                           I/O Timings: shared read=1.912
+                     ->  Parallel Seq Scan on incidents_2024_01 incidents_13  (cost=0.00..1899.17 rows=1 width=64) (actual time=10.300..10.301 rows=0.00 loops=1)
+                           Filter: (requester_id = 4242)
+                           Rows Removed by Filter: 28311
+                           Buffers: shared read=1691 written=92
+                           I/O Timings: shared read=0.771 write=0.348
+                     ->  Parallel Seq Scan on incidents_2024_03 incidents_15  (cost=0.00..1899.17 rows=1 width=64) (actual time=12.417..12.417 rows=0.00 loops=1)
+                           Filter: (requester_id = 4242)
+                           Rows Removed by Filter: 28311
+                           Buffers: shared read=1691 written=92
+                           I/O Timings: shared read=0.816 write=0.298
+                     ->  Parallel Seq Scan on incidents_2024_05 incidents_17  (cost=0.00..1899.17 rows=1 width=64) (actual time=144.034..144.035 rows=0.00 loops=1)
+                           Filter: (requester_id = 4242)
+                           Rows Removed by Filter: 28311
+                           Buffers: shared read=1691 written=28
+                           I/O Timings: shared read=0.643 write=0.118
+                     ->  Parallel Seq Scan on incidents_2024_08 incidents_20  (cost=0.00..1899.17 rows=1 width=64) (actual time=148.676..148.676 rows=0.00 loops=1)
+                           Filter: (requester_id = 4242)
+                           Rows Removed by Filter: 28311
+                           Buffers: shared read=1691 written=13
+                           I/O Timings: shared read=0.796 write=0.048
+                     ->  Parallel Seq Scan on incidents_2024_10 incidents_22  (cost=0.00..1899.17 rows=1 width=64) (actual time=7.782..7.783 rows=0.00 loops=1)
+                           Filter: (requester_id = 4242)
+                           Rows Removed by Filter: 28311
+                           Buffers: shared read=1691 written=1
+                           I/O Timings: shared read=1.261 write=0.010
+                     ->  Parallel Seq Scan on incidents_2025_01 incidents_25  (cost=0.00..1899.17 rows=1 width=64) (actual time=4.169..7.081 rows=1.00 loops=1)
+                           Filter: (requester_id = 4242)
+                           Rows Removed by Filter: 28310
+                           Buffers: shared hit=182 read=1509
+                           I/O Timings: shared read=1.224
+                     ->  Parallel Seq Scan on incidents_2025_03 incidents_27  (cost=0.00..1899.17 rows=1 width=64) (actual time=7.742..8.706 rows=1.00 loops=1)
+                           Filter: (requester_id = 4242)
+                           Rows Removed by Filter: 28310
+                           Buffers: shared read=1691
+                           I/O Timings: shared read=1.380
+                     ->  Parallel Seq Scan on incidents_2025_08 incidents_32  (cost=0.00..1899.17 rows=1 width=64) (actual time=9.470..9.470 rows=0.00 loops=1)
+                           Filter: (requester_id = 4242)
+                           Rows Removed by Filter: 28311
+                           Buffers: shared read=1691
+                           I/O Timings: shared read=3.962
+                     ->  Parallel Seq Scan on incidents_2023_07 incidents_7  (cost=0.00..1899.16 rows=1 width=64) (actual time=3.514..9.165 rows=1.00 loops=1)
+                           Filter: (requester_id = 4242)
+                           Rows Removed by Filter: 28309
+                           Buffers: shared read=1691 written=1
+                           I/O Timings: shared read=1.670 write=0.025
+                     ->  Parallel Seq Scan on incidents_2023_10 incidents_10  (cost=0.00..1899.16 rows=1 width=64) (actual time=9.753..9.753 rows=0.00 loops=1)
+                           Filter: (requester_id = 4242)
+                           Rows Removed by Filter: 28310
+                           Buffers: shared read=1691
+                           I/O Timings: shared read=3.507
+                     ->  Parallel Seq Scan on incidents_2023_12 incidents_12  (cost=0.00..1899.16 rows=1 width=64) (actual time=9.137..9.137 rows=0.00 loops=1)
+                           Filter: (requester_id = 4242)
+                           Rows Removed by Filter: 28310
+                           Buffers: shared read=1691
+                           I/O Timings: shared read=2.887
+                     ->  Parallel Seq Scan on incidents_2024_07 incidents_19  (cost=0.00..1899.16 rows=1 width=64) (actual time=11.582..11.582 rows=0.00 loops=1)
+                           Filter: (requester_id = 4242)
+                           Rows Removed by Filter: 28310
+                           Buffers: shared read=1691
+                           I/O Timings: shared read=3.111
+                     ->  Parallel Seq Scan on incidents_2024_12 incidents_24  (cost=0.00..1899.16 rows=1 width=64) (actual time=2.529..9.601 rows=1.00 loops=1)
+                           Filter: (requester_id = 4242)
+                           Rows Removed by Filter: 28309
+                           Buffers: shared hit=86 read=1605
+                           I/O Timings: shared read=1.620
+                     ->  Parallel Seq Scan on incidents_2025_05 incidents_29  (cost=0.00..1899.16 rows=1 width=64) (actual time=8.972..8.972 rows=0.00 loops=1)
+                           Filter: (requester_id = 4242)
+                           Rows Removed by Filter: 28310
+                           Buffers: shared read=1691 written=1
+                           I/O Timings: shared read=2.324 write=0.026
+                     ->  Parallel Seq Scan on incidents_2025_07 incidents_31  (cost=0.00..1899.16 rows=1 width=64) (actual time=11.473..11.473 rows=0.00 loops=1)
+                           Filter: (requester_id = 4242)
+                           Rows Removed by Filter: 28310
+                           Buffers: shared read=1691
+                           I/O Timings: shared read=3.313
+                     ->  Parallel Seq Scan on incidents_2025_10 incidents_34  (cost=0.00..1899.16 rows=1 width=64) (actual time=681.184..681.184 rows=0.00 loops=1)
+                           Filter: (requester_id = 4242)
+                           Rows Removed by Filter: 28310
+                           Buffers: shared read=1691 written=22
+                           I/O Timings: shared read=2.589 write=0.072
+                     ->  Parallel Seq Scan on incidents_2023_04 incidents_4  (cost=0.00..1828.46 rows=1 width=64) (actual time=8.167..8.167 rows=0.00 loops=1)
+                           Filter: (requester_id = 4242)
+                           Rows Removed by Filter: 27399
+                           Buffers: shared read=1627 written=38
+                           I/O Timings: shared read=0.229 write=0.121
+                     ->  Parallel Seq Scan on incidents_2023_06 incidents_6  (cost=0.00..1828.45 rows=1 width=64) (actual time=1.183..668.287 rows=1.00 loops=1)
+                           Filter: (requester_id = 4242)
+                           Rows Removed by Filter: 27396
+                           Buffers: shared read=1627 written=1
+                           I/O Timings: shared read=1.293 write=0.005
+                     ->  Parallel Seq Scan on incidents_2023_09 incidents_9  (cost=0.00..1828.45 rows=1 width=64) (actual time=223.383..223.596 rows=0.67 loops=3)
+                           Filter: (requester_id = 4242)
+                           Rows Removed by Filter: 9132
+                           Buffers: shared read=1627 written=1
+                           I/O Timings: shared read=2.812 write=0.005
+                     ->  Parallel Seq Scan on incidents_2023_11 incidents_11  (cost=0.00..1828.45 rows=1 width=64) (actual time=6.064..6.064 rows=0.00 loops=1)
+                           Filter: (requester_id = 4242)
+                           Rows Removed by Filter: 27397
+                           Buffers: shared read=1627
+                           I/O Timings: shared read=0.236
+                     ->  Parallel Seq Scan on incidents_2024_06 incidents_18  (cost=0.00..1828.45 rows=1 width=64) (actual time=6.489..6.489 rows=0.00 loops=1)
+                           Filter: (requester_id = 4242)
+                           Rows Removed by Filter: 27397
+                           Buffers: shared read=1627 written=49
+                           I/O Timings: shared read=0.396 write=0.127
+                     ->  Parallel Seq Scan on incidents_2024_11 incidents_23  (cost=0.00..1828.45 rows=1 width=64) (actual time=7.552..7.552 rows=0.00 loops=1)
+                           Filter: (requester_id = 4242)
+                           Rows Removed by Filter: 27397
+                           Buffers: shared read=1627
+                           I/O Timings: shared read=1.422
+                     ->  Parallel Seq Scan on incidents_2025_04 incidents_28  (cost=0.00..1828.45 rows=1 width=64) (actual time=6.669..6.759 rows=1.00 loops=1)
+                           Filter: (requester_id = 4242)
+                           Rows Removed by Filter: 27396
+                           Buffers: shared read=1627
+                           I/O Timings: shared read=0.942
+                     ->  Parallel Seq Scan on incidents_2025_06 incidents_30  (cost=0.00..1828.45 rows=1 width=64) (actual time=7.362..7.362 rows=0.00 loops=1)
+                           Filter: (requester_id = 4242)
+                           Rows Removed by Filter: 27397
+                           Buffers: shared read=1627
+                           I/O Timings: shared read=0.333
+                     ->  Parallel Seq Scan on incidents_2025_09 incidents_33  (cost=0.00..1828.45 rows=1 width=64) (actual time=8.616..8.616 rows=0.00 loops=1)
+                           Filter: (requester_id = 4242)
+                           Rows Removed by Filter: 27397
+                           Buffers: shared read=1627
+                           I/O Timings: shared read=2.050
+                     ->  Parallel Seq Scan on incidents_2025_11 incidents_35  (cost=0.00..1828.45 rows=1 width=64) (actual time=9.476..9.476 rows=0.00 loops=1)
+                           Filter: (requester_id = 4242)
+                           Rows Removed by Filter: 27397
+                           Buffers: shared read=1627 written=1
+                           I/O Timings: shared read=3.034 write=0.035
+                     ->  Parallel Seq Scan on incidents_2025_12 incidents_36  (cost=0.00..1828.45 rows=1 width=64) (actual time=10.480..10.480 rows=0.00 loops=1)
+                           Filter: (requester_id = 4242)
+                           Rows Removed by Filter: 27397
+                           Buffers: shared read=1627
+                           I/O Timings: shared read=3.954
+                     ->  Parallel Seq Scan on incidents_2024_04 incidents_16  (cost=0.00..1828.44 rows=1 width=64) (actual time=8.537..8.537 rows=0.00 loops=1)
+                           Filter: (requester_id = 4242)
+                           Rows Removed by Filter: 27396
+                           Buffers: shared read=1627
+                           I/O Timings: shared read=2.333
+                     ->  Parallel Seq Scan on incidents_2024_09 incidents_21  (cost=0.00..1828.44 rows=1 width=64) (actual time=150.099..150.099 rows=0.00 loops=1)
+                           Filter: (requester_id = 4242)
+                           Rows Removed by Filter: 27396
+                           Buffers: shared read=1627 written=75
+                           I/O Timings: shared read=1.426 write=0.348
+                     ->  Parallel Seq Scan on incidents_2024_02 incidents_14  (cost=0.00..1792.73 rows=1 width=64) (actual time=13.430..13.430 rows=0.00 loops=1)
+                           Filter: (requester_id = 4242)
+                           Rows Removed by Filter: 26483
+                           Buffers: shared read=1598
+                           I/O Timings: shared read=2.597
+                     ->  Parallel Seq Scan on incidents_2023_02 incidents_2  (cost=0.00..1718.03 rows=1 width=64) (actual time=7.648..7.648 rows=0.00 loops=1)
+                           Filter: (requester_id = 4242)
+                           Rows Removed by Filter: 25572
+                           Buffers: shared read=1530
+                           I/O Timings: shared read=1.125
+                     ->  Parallel Seq Scan on incidents_2025_02 incidents_26  (cost=0.00..1718.01 rows=1 width=64) (actual time=4.728..7.165 rows=1.00 loops=1)
+                           Filter: (requester_id = 4242)
+                           Rows Removed by Filter: 25569
+                           Buffers: shared read=1530
+                           I/O Timings: shared read=0.462
+                     ->  Parallel Seq Scan on incidents_default incidents_37  (cost=0.00..0.00 rows=1 width=56) (actual time=0.002..0.002 rows=0.00 loops=1)
+                           Filter: (requester_id = 4242)
+ Settings: work_mem = '32MB', random_page_cost = '1.1'
+ Planning:
+   Buffers: shared hit=2204 read=139
+   I/O Timings: shared read=0.702
+ Planning Time: 4.725 ms
+ Execution Time: 924.763 ms
+(204 rows)
+

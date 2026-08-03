@@ -1,0 +1,29 @@
+                                                                                                            QUERY PLAN                                                                                                             
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Limit  (cost=38286.18..38344.41 rows=500 width=24) (actual time=70.377..72.206 rows=500.00 loops=1)
+   Buffers: shared hit=640 read=21851
+   I/O Timings: shared read=1.483
+   ->  Gather Merge  (cost=38286.18..39604.58 rows=11320 width=24) (actual time=70.375..72.160 rows=500.00 loops=1)
+         Workers Planned: 2
+         Workers Launched: 2
+         Buffers: shared hit=640 read=21851
+         I/O Timings: shared read=1.483
+         ->  Sort  (cost=37286.16..37297.95 rows=4717 width=24) (actual time=67.433..67.461 rows=395.33 loops=3)
+               Sort Key: target_at
+               Sort Method: top-N heapsort  Memory: 58kB
+               Buffers: shared hit=640 read=21851
+               I/O Timings: shared read=1.483
+               Worker 0:  Sort Method: top-N heapsort  Memory: 65kB
+               Worker 1:  Sort Method: top-N heapsort  Memory: 65kB
+               ->  Parallel Seq Scan on sla_events  (cost=0.00..36998.33 rows=4717 width=24) (actual time=62.252..66.098 rows=7349.33 loops=3)
+                     Filter: (breached AND (target_at >= '2025-10-01 00:00:00+00'::timestamp with time zone) AND (target_at < '2025-11-01 00:00:00+00'::timestamp with time zone) AND (event_type = 'RESOLUTION'::sla_event_type))
+                     Rows Removed by Filter: 659317
+                     Buffers: shared hit=564 read=21851
+                     I/O Timings: shared read=1.483
+ Settings: work_mem = '32MB', random_page_cost = '1.1'
+ Planning:
+   Buffers: shared hit=129
+ Planning Time: 0.331 ms
+ Execution Time: 72.272 ms
+(25 rows)
+

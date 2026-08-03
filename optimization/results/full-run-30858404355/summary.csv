@@ -1,0 +1,11 @@
+case,baseline_execution_ms,optimized_execution_ms
+01_overdue_priority_incidents,504.282,34.220
+02_requester_timeline,924.763,0.635
+03_technician_active_workload,208.810,1.044
+04_full_text_timeout_search,179.521,257.276
+05_monthly_partition_range,9.713,6.180
+06_device_recurring_incidents,128.200,0.547
+07_breached_resolution_events,72.272,0.487
+08_incident_comment_timeline,49.894,0.079
+09_software_version_inventory,15.683,0.267
+10_service_critical_backlog,137.650,5.598

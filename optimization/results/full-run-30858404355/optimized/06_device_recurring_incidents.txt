@@ -1,0 +1,163 @@
+                                                                                                   QUERY PLAN                                                                                                    
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Limit  (cost=91.33..91.42 rows=37 width=64) (actual time=0.281..0.286 rows=5.00 loops=1)
+   Buffers: shared hit=83
+   ->  Sort  (cost=91.33..91.42 rows=37 width=64) (actual time=0.280..0.284 rows=5.00 loops=1)
+         Sort Key: incidents.created_at DESC
+         Sort Method: quicksort  Memory: 25kB
+         Buffers: shared hit=83
+         ->  Append  (cost=0.29..90.36 rows=37 width=64) (actual time=0.015..0.259 rows=5.00 loops=1)
+               Buffers: shared hit=80
+               ->  Index Scan using incidents_2023_01_device_id_created_at_status_priority_idx on incidents_2023_01 incidents_1  (cost=0.29..2.51 rows=1 width=64) (actual time=0.014..0.014 rows=1.00 loops=1)
+                     Index Cond: (device_id = 12345)
+                     Index Searches: 1
+                     Buffers: shared hit=6
+               ->  Index Scan using incidents_2023_02_device_id_created_at_status_priority_idx on incidents_2023_02 incidents_2  (cost=0.29..2.51 rows=1 width=64) (actual time=0.007..0.007 rows=1.00 loops=1)
+                     Index Cond: (device_id = 12345)
+                     Index Searches: 1
+                     Buffers: shared hit=3
+               ->  Index Scan using incidents_2023_03_device_id_created_at_status_priority_idx on incidents_2023_03 incidents_3  (cost=0.29..2.51 rows=1 width=64) (actual time=0.008..0.008 rows=1.00 loops=1)
+                     Index Cond: (device_id = 12345)
+                     Index Searches: 1
+                     Buffers: shared hit=3
+               ->  Index Scan using incidents_2023_04_device_id_created_at_status_priority_idx on incidents_2023_04 incidents_4  (cost=0.29..2.51 rows=1 width=64) (actual time=0.013..0.013 rows=1.00 loops=1)
+                     Index Cond: (device_id = 12345)
+                     Index Searches: 1
+                     Buffers: shared hit=3
+               ->  Index Scan using incidents_2023_05_device_id_created_at_status_priority_idx on incidents_2023_05 incidents_5  (cost=0.29..2.51 rows=1 width=64) (actual time=0.011..0.011 rows=1.00 loops=1)
+                     Index Cond: (device_id = 12345)
+                     Index Searches: 1
+                     Buffers: shared hit=3
+               ->  Index Scan using incidents_2023_06_device_id_created_at_status_priority_idx on incidents_2023_06 incidents_6  (cost=0.29..2.51 rows=1 width=64) (actual time=0.006..0.006 rows=0.00 loops=1)
+                     Index Cond: (device_id = 12345)
+                     Index Searches: 1
+                     Buffers: shared hit=2
+               ->  Index Scan using incidents_2023_07_device_id_created_at_status_priority_idx on incidents_2023_07 incidents_7  (cost=0.29..2.51 rows=1 width=64) (actual time=0.005..0.006 rows=0.00 loops=1)
+                     Index Cond: (device_id = 12345)
+                     Index Searches: 1
+                     Buffers: shared hit=2
+               ->  Index Scan using incidents_2023_08_device_id_created_at_status_priority_idx on incidents_2023_08 incidents_8  (cost=0.29..2.51 rows=1 width=64) (actual time=0.007..0.007 rows=0.00 loops=1)
+                     Index Cond: (device_id = 12345)
+                     Index Searches: 1
+                     Buffers: shared hit=2
+               ->  Index Scan using incidents_2023_09_device_id_created_at_status_priority_idx on incidents_2023_09 incidents_9  (cost=0.29..2.51 rows=1 width=64) (actual time=0.008..0.008 rows=0.00 loops=1)
+                     Index Cond: (device_id = 12345)
+                     Index Searches: 1
+                     Buffers: shared hit=2
+               ->  Index Scan using incidents_2023_10_device_id_created_at_status_priority_idx on incidents_2023_10 incidents_10  (cost=0.29..2.51 rows=1 width=64) (actual time=0.006..0.006 rows=0.00 loops=1)
+                     Index Cond: (device_id = 12345)
+                     Index Searches: 1
+                     Buffers: shared hit=2
+               ->  Index Scan using incidents_2023_11_device_id_created_at_status_priority_idx on incidents_2023_11 incidents_11  (cost=0.29..2.51 rows=1 width=64) (actual time=0.007..0.007 rows=0.00 loops=1)
+                     Index Cond: (device_id = 12345)
+                     Index Searches: 1
+                     Buffers: shared hit=2
+               ->  Index Scan using incidents_2023_12_device_id_created_at_status_priority_idx on incidents_2023_12 incidents_12  (cost=0.29..2.51 rows=1 width=64) (actual time=0.005..0.005 rows=0.00 loops=1)
+                     Index Cond: (device_id = 12345)
+                     Index Searches: 1
+                     Buffers: shared hit=2
+               ->  Index Scan using incidents_2024_01_device_id_created_at_status_priority_idx on incidents_2024_01 incidents_13  (cost=0.29..2.51 rows=1 width=64) (actual time=0.005..0.005 rows=0.00 loops=1)
+                     Index Cond: (device_id = 12345)
+                     Index Searches: 1
+                     Buffers: shared hit=2
+               ->  Index Scan using incidents_2024_02_device_id_created_at_status_priority_idx on incidents_2024_02 incidents_14  (cost=0.29..2.51 rows=1 width=64) (actual time=0.005..0.005 rows=0.00 loops=1)
+                     Index Cond: (device_id = 12345)
+                     Index Searches: 1
+                     Buffers: shared hit=2
+               ->  Index Scan using incidents_2024_03_device_id_created_at_status_priority_idx on incidents_2024_03 incidents_15  (cost=0.29..2.51 rows=1 width=64) (actual time=0.006..0.006 rows=0.00 loops=1)
+                     Index Cond: (device_id = 12345)
+                     Index Searches: 1
+                     Buffers: shared hit=2
+               ->  Index Scan using incidents_2024_04_device_id_created_at_status_priority_idx on incidents_2024_04 incidents_16  (cost=0.29..2.51 rows=1 width=64) (actual time=0.005..0.005 rows=0.00 loops=1)
+                     Index Cond: (device_id = 12345)
+                     Index Searches: 1
+                     Buffers: shared hit=2
+               ->  Index Scan using incidents_2024_05_device_id_created_at_status_priority_idx on incidents_2024_05 incidents_17  (cost=0.29..2.51 rows=1 width=64) (actual time=0.005..0.005 rows=0.00 loops=1)
+                     Index Cond: (device_id = 12345)
+                     Index Searches: 1
+                     Buffers: shared hit=2
+               ->  Index Scan using incidents_2024_06_device_id_created_at_status_priority_idx on incidents_2024_06 incidents_18  (cost=0.29..2.51 rows=1 width=64) (actual time=0.006..0.006 rows=0.00 loops=1)
+                     Index Cond: (device_id = 12345)
+                     Index Searches: 1
+                     Buffers: shared hit=2
+               ->  Index Scan using incidents_2024_07_device_id_created_at_status_priority_idx on incidents_2024_07 incidents_19  (cost=0.29..2.51 rows=1 width=64) (actual time=0.005..0.005 rows=0.00 loops=1)
+                     Index Cond: (device_id = 12345)
+                     Index Searches: 1
+                     Buffers: shared hit=2
+               ->  Index Scan using incidents_2024_08_device_id_created_at_status_priority_idx on incidents_2024_08 incidents_20  (cost=0.29..2.51 rows=1 width=64) (actual time=0.008..0.008 rows=0.00 loops=1)
+                     Index Cond: (device_id = 12345)
+                     Index Searches: 1
+                     Buffers: shared hit=2
+               ->  Index Scan using incidents_2024_09_device_id_created_at_status_priority_idx on incidents_2024_09 incidents_21  (cost=0.29..2.51 rows=1 width=64) (actual time=0.005..0.005 rows=0.00 loops=1)
+                     Index Cond: (device_id = 12345)
+                     Index Searches: 1
+                     Buffers: shared hit=2
+               ->  Index Scan using incidents_2024_10_device_id_created_at_status_priority_idx on incidents_2024_10 incidents_22  (cost=0.29..2.51 rows=1 width=64) (actual time=0.007..0.007 rows=0.00 loops=1)
+                     Index Cond: (device_id = 12345)
+                     Index Searches: 1
+                     Buffers: shared hit=2
+               ->  Index Scan using incidents_2024_11_device_id_created_at_status_priority_idx on incidents_2024_11 incidents_23  (cost=0.29..2.51 rows=1 width=64) (actual time=0.005..0.005 rows=0.00 loops=1)
+                     Index Cond: (device_id = 12345)
+                     Index Searches: 1
+                     Buffers: shared hit=2
+               ->  Index Scan using incidents_2024_12_device_id_created_at_status_priority_idx on incidents_2024_12 incidents_24  (cost=0.29..2.51 rows=1 width=64) (actual time=0.008..0.008 rows=0.00 loops=1)
+                     Index Cond: (device_id = 12345)
+                     Index Searches: 1
+                     Buffers: shared hit=2
+               ->  Index Scan using incidents_2025_01_device_id_created_at_status_priority_idx on incidents_2025_01 incidents_25  (cost=0.29..2.51 rows=1 width=64) (actual time=0.007..0.007 rows=0.00 loops=1)
+                     Index Cond: (device_id = 12345)
+                     Index Searches: 1
+                     Buffers: shared hit=2
+               ->  Index Scan using incidents_2025_02_device_id_created_at_status_priority_idx on incidents_2025_02 incidents_26  (cost=0.29..2.51 rows=1 width=64) (actual time=0.007..0.007 rows=0.00 loops=1)
+                     Index Cond: (device_id = 12345)
+                     Index Searches: 1
+                     Buffers: shared hit=2
+               ->  Index Scan using incidents_2025_03_device_id_created_at_status_priority_idx on incidents_2025_03 incidents_27  (cost=0.29..2.51 rows=1 width=64) (actual time=0.005..0.005 rows=0.00 loops=1)
+                     Index Cond: (device_id = 12345)
+                     Index Searches: 1
+                     Buffers: shared hit=2
+               ->  Index Scan using incidents_2025_04_device_id_created_at_status_priority_idx on incidents_2025_04 incidents_28  (cost=0.29..2.51 rows=1 width=64) (actual time=0.008..0.008 rows=0.00 loops=1)
+                     Index Cond: (device_id = 12345)
+                     Index Searches: 1
+                     Buffers: shared hit=2
+               ->  Index Scan using incidents_2025_05_device_id_created_at_status_priority_idx on incidents_2025_05 incidents_29  (cost=0.29..2.51 rows=1 width=64) (actual time=0.005..0.005 rows=0.00 loops=1)
+                     Index Cond: (device_id = 12345)
+                     Index Searches: 1
+                     Buffers: shared hit=2
+               ->  Index Scan using incidents_2025_06_device_id_created_at_status_priority_idx on incidents_2025_06 incidents_30  (cost=0.29..2.51 rows=1 width=64) (actual time=0.006..0.006 rows=0.00 loops=1)
+                     Index Cond: (device_id = 12345)
+                     Index Searches: 1
+                     Buffers: shared hit=2
+               ->  Index Scan using incidents_2025_07_device_id_created_at_status_priority_idx on incidents_2025_07 incidents_31  (cost=0.29..2.51 rows=1 width=64) (actual time=0.006..0.006 rows=0.00 loops=1)
+                     Index Cond: (device_id = 12345)
+                     Index Searches: 1
+                     Buffers: shared hit=2
+               ->  Index Scan using incidents_2025_08_device_id_created_at_status_priority_idx on incidents_2025_08 incidents_32  (cost=0.29..2.51 rows=1 width=64) (actual time=0.007..0.007 rows=0.00 loops=1)
+                     Index Cond: (device_id = 12345)
+                     Index Searches: 1
+                     Buffers: shared hit=2
+               ->  Index Scan using incidents_2025_09_device_id_created_at_status_priority_idx on incidents_2025_09 incidents_33  (cost=0.29..2.51 rows=1 width=64) (actual time=0.006..0.006 rows=0.00 loops=1)
+                     Index Cond: (device_id = 12345)
+                     Index Searches: 1
+                     Buffers: shared hit=2
+               ->  Index Scan using incidents_2025_10_device_id_created_at_status_priority_idx on incidents_2025_10 incidents_34  (cost=0.29..2.51 rows=1 width=64) (actual time=0.005..0.005 rows=0.00 loops=1)
+                     Index Cond: (device_id = 12345)
+                     Index Searches: 1
+                     Buffers: shared hit=2
+               ->  Index Scan using incidents_2025_11_device_id_created_at_status_priority_idx on incidents_2025_11 incidents_35  (cost=0.29..2.51 rows=1 width=64) (actual time=0.006..0.006 rows=0.00 loops=1)
+                     Index Cond: (device_id = 12345)
+                     Index Searches: 1
+                     Buffers: shared hit=2
+               ->  Index Scan using incidents_2025_12_device_id_created_at_status_priority_idx on incidents_2025_12 incidents_36  (cost=0.29..2.51 rows=1 width=64) (actual time=0.007..0.007 rows=0.00 loops=1)
+                     Index Cond: (device_id = 12345)
+                     Index Searches: 1
+                     Buffers: shared hit=2
+               ->  Seq Scan on incidents_default incidents_37  (cost=0.00..0.00 rows=1 width=56) (actual time=0.008..0.008 rows=0.00 loops=1)
+                     Filter: (device_id = 12345)
+ Settings: work_mem = '32MB', random_page_cost = '1.1'
+ Planning:
+   Buffers: shared hit=7799
+ Planning Time: 10.631 ms
+ Execution Time: 0.547 ms
+(159 rows)
+

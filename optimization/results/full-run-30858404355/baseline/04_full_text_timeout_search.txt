@@ -1,0 +1,210 @@
+                                                                              QUERY PLAN                                                                              
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Limit  (cost=68263.06..68274.71 rows=100 width=60) (actual time=173.404..179.257 rows=100.00 loops=1)
+   Buffers: shared hit=352 read=59353 written=1135
+   I/O Timings: shared read=23.965 write=4.405
+   ->  Gather Merge  (cost=68263.06..70081.10 rows=15610 width=60) (actual time=173.402..179.246 rows=100.00 loops=1)
+         Workers Planned: 2
+         Workers Launched: 2
+         Buffers: shared hit=352 read=59353 written=1135
+         I/O Timings: shared read=23.965 write=4.405
+         ->  Sort  (cost=67263.04..67279.30 rows=6504 width=60) (actual time=168.132..168.150 rows=100.00 loops=3)
+               Sort Key: incidents.created_at DESC
+               Sort Method: top-N heapsort  Memory: 47kB
+               Buffers: shared hit=352 read=59353 written=1135
+               I/O Timings: shared read=23.965 write=4.405
+               Worker 0:  Sort Method: top-N heapsort  Memory: 47kB
+               Worker 1:  Sort Method: top-N heapsort  Memory: 47kB
+               ->  Parallel Append  (cost=0.00..67014.46 rows=6504 width=60) (actual time=0.111..156.065 rows=41666.67 loops=3)
+                     Buffers: shared hit=276 read=59353 written=1135
+                     I/O Timings: shared read=23.965 write=4.405
+                     ->  Parallel Seq Scan on incidents_2023_01 incidents_1  (cost=0.00..1899.18 rows=261 width=60) (actual time=0.081..13.190 rows=3541.00 loops=1)
+                           Filter: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                           Rows Removed by Filter: 24771
+                           Buffers: shared read=1691 written=4
+                           I/O Timings: shared read=0.242 write=0.030
+                     ->  Parallel Seq Scan on incidents_2023_03 incidents_3  (cost=0.00..1899.18 rows=260 width=60) (actual time=0.147..13.596 rows=3538.00 loops=1)
+                           Filter: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                           Rows Removed by Filter: 24774
+                           Buffers: shared read=1691 written=4
+                           I/O Timings: shared read=0.577 write=0.033
+                     ->  Parallel Seq Scan on incidents_2023_05 incidents_5  (cost=0.00..1899.17 rows=260 width=60) (actual time=0.082..12.047 rows=3539.00 loops=1)
+                           Filter: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                           Rows Removed by Filter: 24772
+                           Buffers: shared read=1691 written=31
+                           I/O Timings: shared read=0.292 write=0.095
+                     ->  Parallel Seq Scan on incidents_2023_08 incidents_8  (cost=0.00..1899.17 rows=260 width=60) (actual time=0.109..15.241 rows=3539.00 loops=1)
+                           Filter: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                           Rows Removed by Filter: 24772
+                           Buffers: shared read=1691 written=21
+                           I/O Timings: shared read=1.806 write=0.077
+                     ->  Parallel Seq Scan on incidents_2024_01 incidents_13  (cost=0.00..1899.17 rows=260 width=60) (actual time=0.080..10.714 rows=3538.00 loops=1)
+                           Filter: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                           Rows Removed by Filter: 24773
+                           Buffers: shared read=1691
+                           I/O Timings: shared read=0.329
+                     ->  Parallel Seq Scan on incidents_2024_03 incidents_15  (cost=0.00..1899.17 rows=260 width=60) (actual time=0.088..12.831 rows=3539.00 loops=1)
+                           Filter: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                           Rows Removed by Filter: 24772
+                           Buffers: shared read=1691 written=14
+                           I/O Timings: shared read=0.190 write=0.075
+                     ->  Parallel Seq Scan on incidents_2024_05 incidents_17  (cost=0.00..1899.17 rows=260 width=60) (actual time=0.072..13.078 rows=3538.00 loops=1)
+                           Filter: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                           Rows Removed by Filter: 24773
+                           Buffers: shared read=1691 written=265
+                           I/O Timings: shared read=0.537 write=0.821
+                     ->  Parallel Seq Scan on incidents_2024_08 incidents_20  (cost=0.00..1899.17 rows=260 width=60) (actual time=0.171..15.571 rows=3539.00 loops=1)
+                           Filter: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                           Rows Removed by Filter: 24772
+                           Buffers: shared read=1691 written=253
+                           I/O Timings: shared read=0.370 write=1.249
+                     ->  Parallel Seq Scan on incidents_2024_10 incidents_22  (cost=0.00..1899.17 rows=260 width=60) (actual time=0.088..11.270 rows=3539.00 loops=1)
+                           Filter: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                           Rows Removed by Filter: 24772
+                           Buffers: shared read=1691 written=37
+                           I/O Timings: shared read=0.417 write=0.134
+                     ->  Parallel Seq Scan on incidents_2025_01 incidents_25  (cost=0.00..1899.17 rows=260 width=60) (actual time=0.087..12.111 rows=3538.00 loops=1)
+                           Filter: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                           Rows Removed by Filter: 24773
+                           Buffers: shared read=1691 written=3
+                           I/O Timings: shared read=0.483 write=0.009
+                     ->  Parallel Seq Scan on incidents_2025_03 incidents_27  (cost=0.00..1899.17 rows=260 width=60) (actual time=0.171..11.391 rows=3539.00 loops=1)
+                           Filter: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                           Rows Removed by Filter: 24772
+                           Buffers: shared hit=3 read=1688 written=4
+                           I/O Timings: shared read=0.622 write=0.013
+                     ->  Parallel Seq Scan on incidents_2025_08 incidents_32  (cost=0.00..1899.17 rows=261 width=60) (actual time=0.067..12.893 rows=3540.00 loops=1)
+                           Filter: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                           Rows Removed by Filter: 24771
+                           Buffers: shared read=1691 written=2
+                           I/O Timings: shared read=0.261 write=0.024
+                     ->  Parallel Seq Scan on incidents_2023_07 incidents_7  (cost=0.00..1899.16 rows=260 width=60) (actual time=0.185..10.817 rows=3538.00 loops=1)
+                           Filter: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                           Rows Removed by Filter: 24772
+                           Buffers: shared read=1691 written=1
+                           I/O Timings: shared read=0.364 write=0.017
+                     ->  Parallel Seq Scan on incidents_2023_10 incidents_10  (cost=0.00..1899.16 rows=261 width=60) (actual time=0.073..16.962 rows=3540.00 loops=1)
+                           Filter: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                           Rows Removed by Filter: 24770
+                           Buffers: shared read=1691 written=76
+                           I/O Timings: shared read=1.977 write=0.276
+                     ->  Parallel Seq Scan on incidents_2023_12 incidents_12  (cost=0.00..1899.16 rows=260 width=60) (actual time=0.087..12.697 rows=3539.00 loops=1)
+                           Filter: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                           Rows Removed by Filter: 24771
+                           Buffers: shared read=1691 written=84
+                           I/O Timings: shared read=1.587 write=0.259
+                     ->  Parallel Seq Scan on incidents_2024_07 incidents_19  (cost=0.00..1899.16 rows=261 width=60) (actual time=0.090..9.927 rows=3540.00 loops=1)
+                           Filter: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                           Rows Removed by Filter: 24770
+                           Buffers: shared read=1691 written=33
+                           I/O Timings: shared read=0.344 write=0.104
+                     ->  Parallel Seq Scan on incidents_2024_12 incidents_24  (cost=0.00..1899.16 rows=260 width=60) (actual time=0.386..17.167 rows=3539.00 loops=1)
+                           Filter: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                           Rows Removed by Filter: 24771
+                           Buffers: shared read=1691
+                           I/O Timings: shared read=1.034
+                     ->  Parallel Seq Scan on incidents_2025_05 incidents_29  (cost=0.00..1899.16 rows=260 width=60) (actual time=0.417..10.916 rows=3538.00 loops=1)
+                           Filter: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                           Rows Removed by Filter: 24772
+                           Buffers: shared read=1691
+                           I/O Timings: shared read=0.746
+                     ->  Parallel Seq Scan on incidents_2025_07 incidents_31  (cost=0.00..1899.16 rows=260 width=60) (actual time=0.068..11.917 rows=3539.00 loops=1)
+                           Filter: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                           Rows Removed by Filter: 24771
+                           Buffers: shared read=1691
+                           I/O Timings: shared read=1.343
+                     ->  Parallel Seq Scan on incidents_2025_10 incidents_34  (cost=0.00..1899.16 rows=260 width=60) (actual time=0.140..11.569 rows=3538.00 loops=1)
+                           Filter: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                           Rows Removed by Filter: 24772
+                           Buffers: shared read=1691
+                           I/O Timings: shared read=0.809
+                     ->  Parallel Seq Scan on incidents_2023_04 incidents_4  (cost=0.00..1828.46 rows=252 width=60) (actual time=0.027..9.712 rows=3425.00 loops=1)
+                           Filter: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                           Rows Removed by Filter: 23974
+                           Buffers: shared read=1627
+                           I/O Timings: shared read=0.189
+                     ->  Parallel Seq Scan on incidents_2023_06 incidents_6  (cost=0.00..1828.45 rows=252 width=60) (actual time=0.043..10.291 rows=3425.00 loops=1)
+                           Filter: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                           Rows Removed by Filter: 23972
+                           Buffers: shared read=1627
+                           I/O Timings: shared read=0.656
+                     ->  Parallel Seq Scan on incidents_2023_09 incidents_9  (cost=0.00..1828.45 rows=252 width=60) (actual time=0.156..4.768 rows=1141.33 loops=3)
+                           Filter: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                           Rows Removed by Filter: 7991
+                           Buffers: shared read=1627
+                           I/O Timings: shared read=1.106
+                     ->  Parallel Seq Scan on incidents_2023_11 incidents_11  (cost=0.00..1828.45 rows=252 width=60) (actual time=0.146..5.529 rows=1712.00 loops=2)
+                           Filter: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                           Rows Removed by Filter: 11986
+                           Buffers: shared read=1627
+                           I/O Timings: shared read=0.678
+                     ->  Parallel Seq Scan on incidents_2024_06 incidents_18  (cost=0.00..1828.45 rows=252 width=60) (actual time=0.078..14.066 rows=3424.00 loops=1)
+                           Filter: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                           Rows Removed by Filter: 23973
+                           Buffers: shared read=1627
+                           I/O Timings: shared read=0.116
+                     ->  Parallel Seq Scan on incidents_2024_11 incidents_23  (cost=0.00..1828.45 rows=252 width=60) (actual time=0.377..15.082 rows=3425.00 loops=1)
+                           Filter: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                           Rows Removed by Filter: 23972
+                           Buffers: shared read=1627
+                           I/O Timings: shared read=1.976
+                     ->  Parallel Seq Scan on incidents_2025_04 incidents_28  (cost=0.00..1828.45 rows=252 width=60) (actual time=0.047..9.877 rows=3426.00 loops=1)
+                           Filter: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                           Rows Removed by Filter: 23971
+                           Buffers: shared hit=273 read=1354
+                           I/O Timings: shared read=0.934
+                     ->  Parallel Seq Scan on incidents_2025_06 incidents_30  (cost=0.00..1828.45 rows=252 width=60) (actual time=0.088..10.493 rows=3424.00 loops=1)
+                           Filter: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                           Rows Removed by Filter: 23973
+                           Buffers: shared read=1627 written=11
+                           I/O Timings: shared read=0.576 write=0.034
+                     ->  Parallel Seq Scan on incidents_2025_09 incidents_33  (cost=0.00..1828.45 rows=252 width=60) (actual time=0.120..10.949 rows=3424.00 loops=1)
+                           Filter: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                           Rows Removed by Filter: 23973
+                           Buffers: shared read=1627 written=9
+                           I/O Timings: shared read=0.284 write=0.026
+                     ->  Parallel Seq Scan on incidents_2025_11 incidents_35  (cost=0.00..1828.45 rows=252 width=60) (actual time=0.112..13.105 rows=3425.00 loops=1)
+                           Filter: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                           Rows Removed by Filter: 23972
+                           Buffers: shared read=1627 written=53
+                           I/O Timings: shared read=0.364 write=0.177
+                     ->  Parallel Seq Scan on incidents_2025_12 incidents_36  (cost=0.00..1828.45 rows=252 width=60) (actual time=0.042..15.014 rows=3424.00 loops=1)
+                           Filter: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                           Rows Removed by Filter: 23973
+                           Buffers: shared read=1627
+                           I/O Timings: shared read=0.575
+                     ->  Parallel Seq Scan on incidents_2024_04 incidents_16  (cost=0.00..1828.44 rows=252 width=60) (actual time=0.038..17.308 rows=3425.00 loops=1)
+                           Filter: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                           Rows Removed by Filter: 23971
+                           Buffers: shared read=1627 written=202
+                           I/O Timings: shared read=0.221 write=0.852
+                     ->  Parallel Seq Scan on incidents_2024_09 incidents_21  (cost=0.00..1828.44 rows=252 width=60) (actual time=0.046..12.992 rows=3424.00 loops=1)
+                           Filter: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                           Rows Removed by Filter: 23972
+                           Buffers: shared read=1627 written=6
+                           I/O Timings: shared read=0.964 write=0.023
+                     ->  Parallel Seq Scan on incidents_2024_02 incidents_14  (cost=0.00..1792.73 rows=244 width=60) (actual time=0.064..11.018 rows=3311.00 loops=1)
+                           Filter: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                           Rows Removed by Filter: 23172
+                           Buffers: shared read=1598
+                           I/O Timings: shared read=0.321
+                     ->  Parallel Seq Scan on incidents_2023_02 incidents_2  (cost=0.00..1718.03 rows=235 width=60) (actual time=0.158..12.582 rows=3196.00 loops=1)
+                           Filter: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                           Rows Removed by Filter: 22376
+                           Buffers: shared read=1530 written=16
+                           I/O Timings: shared read=0.283 write=0.047
+                     ->  Parallel Seq Scan on incidents_2025_02 incidents_26  (cost=0.00..1718.01 rows=235 width=60) (actual time=0.101..11.004 rows=3196.00 loops=1)
+                           Filter: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                           Rows Removed by Filter: 22374
+                           Buffers: shared read=1530 written=6
+                           I/O Timings: shared read=0.393 write=0.029
+                     ->  Parallel Seq Scan on incidents_default incidents_37  (cost=0.00..0.00 rows=1 width=52) (actual time=0.002..0.002 rows=0.00 loops=1)
+                           Filter: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+ Settings: work_mem = '32MB', random_page_cost = '1.1'
+ Planning:
+   Buffers: shared hit=2097 read=150
+   I/O Timings: shared read=0.809
+ Planning Time: 5.380 ms
+ Execution Time: 179.521 ms
+(206 rows)
+

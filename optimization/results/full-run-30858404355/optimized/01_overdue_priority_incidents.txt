@@ -1,0 +1,163 @@
+                                                                                                         QUERY PLAN                                                                                                         
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Limit  (cost=24361.95..24362.45 rows=200 width=24) (actual time=33.928..33.959 rows=200.00 loops=1)
+   Buffers: shared hit=28260
+   ->  Sort  (cost=24361.95..24432.00 rows=28023 width=24) (actual time=33.927..33.946 rows=200.00 loops=1)
+         Sort Key: incidents.sla_due_at
+         Sort Method: top-N heapsort  Memory: 43kB
+         Buffers: shared hit=28260
+         ->  Append  (cost=0.28..23150.81 rows=28023 width=24) (actual time=0.020..30.739 rows=28071.00 loops=1)
+               Buffers: shared hit=28257
+               ->  Index Scan using incidents_2023_01_priority_sla_due_at_created_at_idx on incidents_2023_01 incidents_1  (cost=0.28..725.50 rows=897 width=24) (actual time=0.019..1.035 rows=891.00 loops=1)
+                     Index Cond: ((priority = ANY ('{P1,P2}'::incident_priority[])) AND (sla_due_at < '2026-01-01 00:00:00+00'::timestamp with time zone))
+                     Index Searches: 1
+                     Buffers: shared hit=897
+               ->  Index Scan using incidents_2023_02_priority_sla_due_at_created_at_idx on incidents_2023_02 incidents_2  (cost=0.28..533.89 rows=640 width=24) (actual time=0.018..0.681 rows=643.00 loops=1)
+                     Index Cond: ((priority = ANY ('{P1,P2}'::incident_priority[])) AND (sla_due_at < '2026-01-01 00:00:00+00'::timestamp with time zone))
+                     Index Searches: 1
+                     Buffers: shared hit=648
+               ->  Index Scan using incidents_2023_03_priority_sla_due_at_created_at_idx on incidents_2023_03 incidents_3  (cost=0.28..634.07 rows=770 width=24) (actual time=0.015..0.944 rows=771.00 loops=1)
+                     Index Cond: ((priority = ANY ('{P1,P2}'::incident_priority[])) AND (sla_due_at < '2026-01-01 00:00:00+00'::timestamp with time zone))
+                     Index Searches: 1
+                     Buffers: shared hit=776
+               ->  Index Scan using incidents_2023_04_priority_sla_due_at_created_at_idx on incidents_2023_04 incidents_4  (cost=0.28..632.29 rows=769 width=24) (actual time=0.017..0.906 rows=771.00 loops=1)
+                     Index Cond: ((priority = ANY ('{P1,P2}'::incident_priority[])) AND (sla_due_at < '2026-01-01 00:00:00+00'::timestamp with time zone))
+                     Index Searches: 1
+                     Buffers: shared hit=776
+               ->  Index Scan using incidents_2023_05_priority_sla_due_at_created_at_idx on incidents_2023_05 incidents_5  (cost=0.28..725.46 rows=897 width=24) (actual time=0.015..0.998 rows=900.00 loops=1)
+                     Index Cond: ((priority = ANY ('{P1,P2}'::incident_priority[])) AND (sla_due_at < '2026-01-01 00:00:00+00'::timestamp with time zone))
+                     Index Searches: 1
+                     Buffers: shared hit=906
+               ->  Index Scan using incidents_2023_06_priority_sla_due_at_created_at_idx on incidents_2023_06 incidents_6  (cost=0.28..630.14 rows=769 width=24) (actual time=0.014..0.904 rows=771.00 loops=1)
+                     Index Cond: ((priority = ANY ('{P1,P2}'::incident_priority[])) AND (sla_due_at < '2026-01-01 00:00:00+00'::timestamp with time zone))
+                     Index Searches: 1
+                     Buffers: shared hit=776
+               ->  Index Scan using incidents_2023_07_priority_sla_due_at_created_at_idx on incidents_2023_07 incidents_7  (cost=0.28..633.08 rows=769 width=24) (actual time=0.021..0.785 rows=771.00 loops=1)
+                     Index Cond: ((priority = ANY ('{P1,P2}'::incident_priority[])) AND (sla_due_at < '2026-01-01 00:00:00+00'::timestamp with time zone))
+                     Index Searches: 1
+                     Buffers: shared hit=776
+               ->  Index Scan using incidents_2023_08_priority_sla_due_at_created_at_idx on incidents_2023_08 incidents_8  (cost=0.28..633.06 rows=769 width=24) (actual time=0.014..0.743 rows=767.00 loops=1)
+                     Index Cond: ((priority = ANY ('{P1,P2}'::incident_priority[])) AND (sla_due_at < '2026-01-01 00:00:00+00'::timestamp with time zone))
+                     Index Searches: 1
+                     Buffers: shared hit=772
+               ->  Index Scan using incidents_2023_09_priority_sla_due_at_created_at_idx on incidents_2023_09 incidents_9  (cost=0.28..632.37 rows=769 width=24) (actual time=0.015..0.741 rows=766.00 loops=1)
+                     Index Cond: ((priority = ANY ('{P1,P2}'::incident_priority[])) AND (sla_due_at < '2026-01-01 00:00:00+00'::timestamp with time zone))
+                     Index Searches: 1
+                     Buffers: shared hit=771
+               ->  Index Scan using incidents_2023_10_priority_sla_due_at_created_at_idx on incidents_2023_10 incidents_10  (cost=0.28..639.32 rows=769 width=24) (actual time=0.016..0.748 rows=772.00 loops=1)
+                     Index Cond: ((priority = ANY ('{P1,P2}'::incident_priority[])) AND (sla_due_at < '2026-01-01 00:00:00+00'::timestamp with time zone))
+                     Index Searches: 1
+                     Buffers: shared hit=777
+               ->  Index Scan using incidents_2023_11_priority_sla_due_at_created_at_idx on incidents_2023_11 incidents_11  (cost=0.28..632.43 rows=770 width=24) (actual time=0.016..0.744 rows=771.00 loops=1)
+                     Index Cond: ((priority = ANY ('{P1,P2}'::incident_priority[])) AND (sla_due_at < '2026-01-01 00:00:00+00'::timestamp with time zone))
+                     Index Searches: 1
+                     Buffers: shared hit=776
+               ->  Index Scan using incidents_2023_12_priority_sla_due_at_created_at_idx on incidents_2023_12 incidents_12  (cost=0.28..633.04 rows=769 width=24) (actual time=0.014..0.734 rows=772.00 loops=1)
+                     Index Cond: ((priority = ANY ('{P1,P2}'::incident_priority[])) AND (sla_due_at < '2026-01-01 00:00:00+00'::timestamp with time zone))
+                     Index Searches: 1
+                     Buffers: shared hit=777
+               ->  Index Scan using incidents_2024_01_priority_sla_due_at_created_at_idx on incidents_2024_01 incidents_13  (cost=0.28..722.03 rows=897 width=24) (actual time=0.015..0.919 rows=899.00 loops=1)
+                     Index Cond: ((priority = ANY ('{P1,P2}'::incident_priority[])) AND (sla_due_at < '2026-01-01 00:00:00+00'::timestamp with time zone))
+                     Index Searches: 1
+                     Buffers: shared hit=905
+               ->  Index Scan using incidents_2024_02_priority_sla_due_at_created_at_idx on incidents_2024_02 incidents_14  (cost=0.28..538.01 rows=641 width=24) (actual time=0.025..0.710 rows=642.00 loops=1)
+                     Index Cond: ((priority = ANY ('{P1,P2}'::incident_priority[])) AND (sla_due_at < '2026-01-01 00:00:00+00'::timestamp with time zone))
+                     Index Searches: 1
+                     Buffers: shared hit=647
+               ->  Index Scan using incidents_2024_03_priority_sla_due_at_created_at_idx on incidents_2024_03 incidents_15  (cost=0.28..723.06 rows=898 width=24) (actual time=0.028..0.951 rows=896.00 loops=1)
+                     Index Cond: ((priority = ANY ('{P1,P2}'::incident_priority[])) AND (sla_due_at < '2026-01-01 00:00:00+00'::timestamp with time zone))
+                     Index Searches: 1
+                     Buffers: shared hit=902
+               ->  Index Scan using incidents_2024_04_priority_sla_due_at_created_at_idx on incidents_2024_04 incidents_16  (cost=0.28..630.11 rows=769 width=24) (actual time=0.016..0.758 rows=767.00 loops=1)
+                     Index Cond: ((priority = ANY ('{P1,P2}'::incident_priority[])) AND (sla_due_at < '2026-01-01 00:00:00+00'::timestamp with time zone))
+                     Index Searches: 1
+                     Buffers: shared hit=772
+               ->  Index Scan using incidents_2024_05_priority_sla_due_at_created_at_idx on incidents_2024_05 incidents_17  (cost=0.28..639.31 rows=769 width=24) (actual time=0.015..0.761 rows=770.00 loops=1)
+                     Index Cond: ((priority = ANY ('{P1,P2}'::incident_priority[])) AND (sla_due_at < '2026-01-01 00:00:00+00'::timestamp with time zone))
+                     Index Searches: 1
+                     Buffers: shared hit=775
+               ->  Index Scan using incidents_2024_06_priority_sla_due_at_created_at_idx on incidents_2024_06 incidents_18  (cost=0.28..632.35 rows=769 width=24) (actual time=0.019..0.768 rows=771.00 loops=1)
+                     Index Cond: ((priority = ANY ('{P1,P2}'::incident_priority[])) AND (sla_due_at < '2026-01-01 00:00:00+00'::timestamp with time zone))
+                     Index Searches: 1
+                     Buffers: shared hit=776
+               ->  Index Scan using incidents_2024_07_priority_sla_due_at_created_at_idx on incidents_2024_07 incidents_19  (cost=0.28..633.04 rows=769 width=24) (actual time=0.016..0.757 rows=770.00 loops=1)
+                     Index Cond: ((priority = ANY ('{P1,P2}'::incident_priority[])) AND (sla_due_at < '2026-01-01 00:00:00+00'::timestamp with time zone))
+                     Index Searches: 1
+                     Buffers: shared hit=775
+               ->  Index Scan using incidents_2024_08_priority_sla_due_at_created_at_idx on incidents_2024_08 incidents_20  (cost=0.28..632.11 rows=768 width=24) (actual time=0.014..0.750 rows=769.00 loops=1)
+                     Index Cond: ((priority = ANY ('{P1,P2}'::incident_priority[])) AND (sla_due_at < '2026-01-01 00:00:00+00'::timestamp with time zone))
+                     Index Searches: 1
+                     Buffers: shared hit=774
+               ->  Index Scan using incidents_2024_09_priority_sla_due_at_created_at_idx on incidents_2024_09 incidents_21  (cost=0.28..632.39 rows=769 width=24) (actual time=0.017..0.727 rows=771.00 loops=1)
+                     Index Cond: ((priority = ANY ('{P1,P2}'::incident_priority[])) AND (sla_due_at < '2026-01-01 00:00:00+00'::timestamp with time zone))
+                     Index Searches: 1
+                     Buffers: shared hit=776
+               ->  Index Scan using incidents_2024_10_priority_sla_due_at_created_at_idx on incidents_2024_10 incidents_22  (cost=0.28..639.27 rows=769 width=24) (actual time=0.018..0.744 rows=769.00 loops=1)
+                     Index Cond: ((priority = ANY ('{P1,P2}'::incident_priority[])) AND (sla_due_at < '2026-01-01 00:00:00+00'::timestamp with time zone))
+                     Index Searches: 1
+                     Buffers: shared hit=774
+               ->  Index Scan using incidents_2024_11_priority_sla_due_at_created_at_idx on incidents_2024_11 incidents_23  (cost=0.28..632.32 rows=769 width=24) (actual time=0.017..0.733 rows=762.00 loops=1)
+                     Index Cond: ((priority = ANY ('{P1,P2}'::incident_priority[])) AND (sla_due_at < '2026-01-01 00:00:00+00'::timestamp with time zone))
+                     Index Searches: 1
+                     Buffers: shared hit=767
+               ->  Index Scan using incidents_2024_12_priority_sla_due_at_created_at_idx on incidents_2024_12 incidents_24  (cost=0.28..722.98 rows=898 width=24) (actual time=0.018..0.888 rows=899.00 loops=1)
+                     Index Cond: ((priority = ANY ('{P1,P2}'::incident_priority[])) AND (sla_due_at < '2026-01-01 00:00:00+00'::timestamp with time zone))
+                     Index Searches: 1
+                     Buffers: shared hit=905
+               ->  Index Scan using incidents_2025_01_priority_sla_due_at_created_at_idx on incidents_2025_01 incidents_25  (cost=0.28..633.13 rows=769 width=24) (actual time=0.016..0.771 rows=769.00 loops=1)
+                     Index Cond: ((priority = ANY ('{P1,P2}'::incident_priority[])) AND (sla_due_at < '2026-01-01 00:00:00+00'::timestamp with time zone))
+                     Index Searches: 1
+                     Buffers: shared hit=774
+               ->  Index Scan using incidents_2025_02_priority_sla_due_at_created_at_idx on incidents_2025_02 incidents_26  (cost=0.28..536.88 rows=641 width=24) (actual time=0.014..0.628 rows=639.00 loops=1)
+                     Index Cond: ((priority = ANY ('{P1,P2}'::incident_priority[])) AND (sla_due_at < '2026-01-01 00:00:00+00'::timestamp with time zone))
+                     Index Searches: 1
+                     Buffers: shared hit=644
+               ->  Index Scan using incidents_2025_03_priority_sla_due_at_created_at_idx on incidents_2025_03 incidents_27  (cost=0.28..721.99 rows=896 width=24) (actual time=0.015..0.859 rows=898.00 loops=1)
+                     Index Cond: ((priority = ANY ('{P1,P2}'::incident_priority[])) AND (sla_due_at < '2026-01-01 00:00:00+00'::timestamp with time zone))
+                     Index Searches: 1
+                     Buffers: shared hit=904
+               ->  Index Scan using incidents_2025_04_priority_sla_due_at_created_at_idx on incidents_2025_04 incidents_28  (cost=0.28..630.13 rows=769 width=24) (actual time=0.020..0.702 rows=769.00 loops=1)
+                     Index Cond: ((priority = ANY ('{P1,P2}'::incident_priority[])) AND (sla_due_at < '2026-01-01 00:00:00+00'::timestamp with time zone))
+                     Index Searches: 1
+                     Buffers: shared hit=774
+               ->  Index Scan using incidents_2025_05_priority_sla_due_at_created_at_idx on incidents_2025_05 incidents_29  (cost=0.28..633.11 rows=769 width=24) (actual time=0.019..0.835 rows=768.00 loops=1)
+                     Index Cond: ((priority = ANY ('{P1,P2}'::incident_priority[])) AND (sla_due_at < '2026-01-01 00:00:00+00'::timestamp with time zone))
+                     Index Searches: 1
+                     Buffers: shared hit=773
+               ->  Index Scan using incidents_2025_06_priority_sla_due_at_created_at_idx on incidents_2025_06 incidents_30  (cost=0.28..630.19 rows=769 width=24) (actual time=0.017..1.192 rows=765.00 loops=1)
+                     Index Cond: ((priority = ANY ('{P1,P2}'::incident_priority[])) AND (sla_due_at < '2026-01-01 00:00:00+00'::timestamp with time zone))
+                     Index Searches: 1
+                     Buffers: shared hit=770
+               ->  Index Scan using incidents_2025_07_priority_sla_due_at_created_at_idx on incidents_2025_07 incidents_31  (cost=0.28..639.31 rows=769 width=24) (actual time=0.013..0.817 rows=767.00 loops=1)
+                     Index Cond: ((priority = ANY ('{P1,P2}'::incident_priority[])) AND (sla_due_at < '2026-01-01 00:00:00+00'::timestamp with time zone))
+                     Index Searches: 1
+                     Buffers: shared hit=772
+               ->  Index Scan using incidents_2025_08_priority_sla_due_at_created_at_idx on incidents_2025_08 incidents_32  (cost=0.28..634.11 rows=770 width=24) (actual time=0.014..0.822 rows=770.00 loops=1)
+                     Index Cond: ((priority = ANY ('{P1,P2}'::incident_priority[])) AND (sla_due_at < '2026-01-01 00:00:00+00'::timestamp with time zone))
+                     Index Searches: 1
+                     Buffers: shared hit=775
+               ->  Index Scan using incidents_2025_09_priority_sla_due_at_created_at_idx on incidents_2025_09 incidents_33  (cost=0.28..629.15 rows=768 width=24) (actual time=0.015..0.763 rows=770.00 loops=1)
+                     Index Cond: ((priority = ANY ('{P1,P2}'::incident_priority[])) AND (sla_due_at < '2026-01-01 00:00:00+00'::timestamp with time zone))
+                     Index Searches: 1
+                     Buffers: shared hit=775
+               ->  Index Scan using incidents_2025_10_priority_sla_due_at_created_at_idx on incidents_2025_10 incidents_34  (cost=0.28..633.09 rows=769 width=24) (actual time=0.016..0.651 rows=766.00 loops=1)
+                     Index Cond: ((priority = ANY ('{P1,P2}'::incident_priority[])) AND (sla_due_at < '2026-01-01 00:00:00+00'::timestamp with time zone))
+                     Index Searches: 1
+                     Buffers: shared hit=771
+               ->  Index Scan using incidents_2025_11_priority_sla_due_at_created_at_idx on incidents_2025_11 incidents_35  (cost=0.28..630.13 rows=769 width=24) (actual time=0.015..0.743 rows=769.00 loops=1)
+                     Index Cond: ((priority = ANY ('{P1,P2}'::incident_priority[])) AND (sla_due_at < '2026-01-01 00:00:00+00'::timestamp with time zone))
+                     Index Searches: 1
+                     Buffers: shared hit=774
+               ->  Index Scan using incidents_2025_12_priority_sla_due_at_created_at_idx on incidents_2025_12 incidents_36  (cost=0.28..597.83 rows=722 width=24) (actual time=0.014..0.691 rows=770.00 loops=1)
+                     Index Cond: ((priority = ANY ('{P1,P2}'::incident_priority[])) AND (sla_due_at < '2026-01-01 00:00:00+00'::timestamp with time zone))
+                     Index Searches: 1
+                     Buffers: shared hit=775
+               ->  Seq Scan on incidents_default incidents_37  (cost=0.00..0.00 rows=1 width=24) (actual time=0.007..0.007 rows=0.00 loops=1)
+                     Filter: ((priority = ANY ('{P1,P2}'::incident_priority[])) AND (sla_due_at < '2026-01-01 00:00:00+00'::timestamp with time zone) AND (status = ANY ('{OPEN,IN_PROGRESS,PENDING}'::incident_status[])))
+ Settings: work_mem = '32MB', random_page_cost = '1.1'
+ Planning:
+   Buffers: shared hit=7845
+ Planning Time: 12.436 ms
+ Execution Time: 34.220 ms
+(159 rows)
+

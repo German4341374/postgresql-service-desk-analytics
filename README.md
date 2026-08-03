@@ -115,7 +115,7 @@ The benchmark does the following for each of ten cases:
 7. captures the optimized plan;
 8. extracts PostgreSQL's reported execution time into `summary.csv`.
 
-Generated local results live under `optimization/results/generated/` and are ignored by Git. The manual `Full-scale benchmark` GitHub workflow requires the exact confirmation phrase `RUN_FULL_BENCHMARK` and uploads its raw plans as a run artifact. Published measurements and their environment are recorded in [performance-report.md](docs/performance-report.md). No benchmark number is documented without a successful measured run.
+Generated local results live under `optimization/results/generated/` and are ignored by Git. The manual `Full-scale benchmark` GitHub workflow requires the exact confirmation phrase `RUN_FULL_BENCHMARK` and uploads its raw plans as a run artifact. The [measured performance report](docs/performance-report.md) records a successful one-million-incident run, including a candid GIN regression, and links every committed raw plan. No benchmark number is documented without a successful measured run.
 
 ## Query catalog
 

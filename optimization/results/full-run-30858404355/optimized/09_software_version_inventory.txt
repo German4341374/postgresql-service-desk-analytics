@@ -1,0 +1,21 @@
+                                                                                      QUERY PLAN                                                                                      
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Sort  (cost=36.29..36.44 rows=61 width=14) (actual time=0.219..0.220 rows=2.00 loops=1)
+   Sort Key: (count(*)) DESC
+   Sort Method: quicksort  Memory: 25kB
+   Buffers: shared hit=13
+   ->  GroupAggregate  (cost=0.42..34.48 rows=61 width=14) (actual time=0.089..0.201 rows=2.00 loops=1)
+         Group Key: installed_version
+         Buffers: shared hit=10
+         ->  Index Only Scan using idx_installations_software_version on software_installations  (cost=0.42..27.90 rows=1193 width=6) (actual time=0.019..0.120 rows=1200.00 loops=1)
+               Index Cond: (software_id = 42)
+               Heap Fetches: 0
+               Index Searches: 1
+               Buffers: shared hit=10
+ Settings: work_mem = '32MB', random_page_cost = '1.1'
+ Planning:
+   Buffers: shared hit=158
+ Planning Time: 0.378 ms
+ Execution Time: 0.267 ms
+(17 rows)
+

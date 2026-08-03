@@ -1,0 +1,383 @@
+                                                                               QUERY PLAN                                                                               
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Limit  (cost=15746.63..15746.88 rows=100 width=60) (actual time=256.565..256.612 rows=100.00 loops=1)
+   Buffers: shared hit=2354 read=40232 written=11
+   I/O Timings: shared read=10.564 write=0.062
+   ->  Sort  (cost=15746.63..15785.68 rows=15621 width=60) (actual time=256.564..256.604 rows=100.00 loops=1)
+         Sort Key: incidents.created_at DESC
+         Sort Method: top-N heapsort  Memory: 47kB
+         Buffers: shared hit=2354 read=40232 written=11
+         I/O Timings: shared read=10.564 write=0.062
+         ->  Append  (cost=9.37..15149.61 rows=15621 width=60) (actual time=0.724..221.063 rows=125000.00 loops=1)
+               Buffers: shared hit=2351 read=40232 written=11
+               I/O Timings: shared read=10.564 write=0.062
+               ->  Bitmap Heap Scan on incidents_2023_01 incidents_1  (cost=9.37..427.23 rows=443 width=60) (actual time=0.724..7.141 rows=3541.00 loops=1)
+                     Recheck Cond: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                     Heap Blocks: exact=1158
+                     Buffers: shared hit=94 read=1073
+                     I/O Timings: shared read=0.323
+                     ->  Bitmap Index Scan on incidents_2023_01_search_document_idx  (cost=0.00..9.25 rows=443 width=0) (actual time=0.495..0.495 rows=3541.00 loops=1)
+                           Index Cond: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                           Index Searches: 1
+                           Buffers: shared hit=5 read=4
+                           I/O Timings: shared read=0.022
+               ->  Bitmap Heap Scan on incidents_2023_02 incidents_2  (cost=9.14..385.47 rows=399 width=60) (actual time=0.631..5.930 rows=3196.00 loops=1)
+                     Recheck Cond: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                     Heap Blocks: exact=959
+                     Buffers: shared hit=54 read=914
+                     I/O Timings: shared read=0.259
+                     ->  Bitmap Index Scan on incidents_2023_02_search_document_idx  (cost=0.00..9.04 rows=399 width=0) (actual time=0.477..0.477 rows=3196.00 loops=1)
+                           Index Cond: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                           Index Searches: 1
+                           Buffers: shared hit=5 read=4
+                           I/O Timings: shared read=0.017
+               ->  Bitmap Heap Scan on incidents_2023_03 incidents_3  (cost=9.36..426.18 rows=442 width=60) (actual time=0.629..6.385 rows=3538.00 loops=1)
+                     Recheck Cond: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                     Heap Blocks: exact=1155
+                     Buffers: shared hit=71 read=1093
+                     I/O Timings: shared read=0.235
+                     ->  Bitmap Index Scan on incidents_2023_03_search_document_idx  (cost=0.00..9.25 rows=442 width=0) (actual time=0.444..0.444 rows=3538.00 loops=1)
+                           Index Cond: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                           Index Searches: 1
+                           Buffers: shared hit=5 read=4
+                           I/O Timings: shared read=0.023
+               ->  Bitmap Heap Scan on incidents_2023_04 incidents_4  (cost=9.29..413.25 rows=428 width=60) (actual time=0.630..6.067 rows=3425.00 loops=1)
+                     Recheck Cond: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                     Heap Blocks: exact=1285
+                     Buffers: shared hit=84 read=1210
+                     I/O Timings: shared read=0.290
+                     ->  Bitmap Index Scan on incidents_2023_04_search_document_idx  (cost=0.00..9.18 rows=428 width=0) (actual time=0.435..0.435 rows=3425.00 loops=1)
+                           Index Cond: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                           Index Searches: 1
+                           Buffers: shared hit=5 read=4
+                           I/O Timings: shared read=0.020
+               ->  Bitmap Heap Scan on incidents_2023_05 incidents_5  (cost=9.36..426.19 rows=442 width=60) (actual time=0.651..6.651 rows=3539.00 loops=1)
+                     Recheck Cond: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                     Heap Blocks: exact=1158
+                     Buffers: shared hit=99 read=1068
+                     I/O Timings: shared read=0.302
+                     ->  Bitmap Index Scan on incidents_2023_05_search_document_idx  (cost=0.00..9.25 rows=442 width=0) (actual time=0.447..0.448 rows=3539.00 loops=1)
+                           Index Cond: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                           Index Searches: 1
+                           Buffers: shared hit=5 read=4
+                           I/O Timings: shared read=0.023
+               ->  Bitmap Heap Scan on incidents_2023_06 incidents_6  (cost=9.29..413.25 rows=428 width=60) (actual time=0.644..6.505 rows=3425.00 loops=1)
+                     Recheck Cond: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                     Heap Blocks: exact=1261
+                     Buffers: shared hit=80 read=1190
+                     I/O Timings: shared read=0.328
+                     ->  Bitmap Index Scan on incidents_2023_06_search_document_idx  (cost=0.00..9.18 rows=428 width=0) (actual time=0.459..0.459 rows=3425.00 loops=1)
+                           Index Cond: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                           Index Searches: 1
+                           Buffers: shared hit=5 read=4
+                           I/O Timings: shared read=0.023
+               ->  Bitmap Heap Scan on incidents_2023_07 incidents_7  (cost=9.36..426.18 rows=442 width=60) (actual time=0.662..7.068 rows=3538.00 loops=1)
+                     Recheck Cond: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                     Heap Blocks: exact=1157
+                     Buffers: shared hit=64 read=1102
+                     I/O Timings: shared read=0.310
+                     ->  Bitmap Index Scan on incidents_2023_07_search_document_idx  (cost=0.00..9.25 rows=442 width=0) (actual time=0.470..0.471 rows=3538.00 loops=1)
+                           Index Cond: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                           Index Searches: 1
+                           Buffers: shared hit=5 read=4
+                           I/O Timings: shared read=0.021
+               ->  Bitmap Heap Scan on incidents_2023_08 incidents_8  (cost=9.36..426.19 rows=442 width=60) (actual time=0.641..7.286 rows=3539.00 loops=1)
+                     Recheck Cond: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                     Heap Blocks: exact=1158
+                     Buffers: shared hit=67 read=1100
+                     I/O Timings: shared read=0.238
+                     ->  Bitmap Index Scan on incidents_2023_08_search_document_idx  (cost=0.00..9.25 rows=442 width=0) (actual time=0.447..0.447 rows=3539.00 loops=1)
+                           Index Cond: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                           Index Searches: 1
+                           Buffers: shared hit=5 read=4
+                           I/O Timings: shared read=0.022
+               ->  Bitmap Heap Scan on incidents_2023_09 incidents_9  (cost=9.29..413.24 rows=428 width=60) (actual time=0.624..6.412 rows=3424.00 loops=1)
+                     Recheck Cond: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                     Heap Blocks: exact=1251
+                     Buffers: shared hit=73 read=1187
+                     I/O Timings: shared read=0.227
+                     ->  Bitmap Index Scan on incidents_2023_09_search_document_idx  (cost=0.00..9.18 rows=428 width=0) (actual time=0.436..0.436 rows=3424.00 loops=1)
+                           Index Cond: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                           Index Searches: 1
+                           Buffers: shared hit=5 read=4
+                           I/O Timings: shared read=0.017
+               ->  Bitmap Heap Scan on incidents_2023_10 incidents_10  (cost=9.36..427.23 rows=443 width=60) (actual time=0.654..6.550 rows=3540.00 loops=1)
+                     Recheck Cond: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                     Heap Blocks: exact=1159
+                     Buffers: shared hit=91 read=1077
+                     I/O Timings: shared read=0.298
+                     ->  Bitmap Index Scan on incidents_2023_10_search_document_idx  (cost=0.00..9.25 rows=443 width=0) (actual time=0.458..0.458 rows=3540.00 loops=1)
+                           Index Cond: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                           Index Searches: 1
+                           Buffers: shared hit=5 read=4
+                           I/O Timings: shared read=0.028
+               ->  Bitmap Heap Scan on incidents_2023_11 incidents_11  (cost=9.29..413.24 rows=428 width=60) (actual time=0.623..6.413 rows=3424.00 loops=1)
+                     Recheck Cond: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                     Heap Blocks: exact=1281
+                     Buffers: shared hit=81 read=1209
+                     I/O Timings: shared read=0.231
+                     ->  Bitmap Index Scan on incidents_2023_11_search_document_idx  (cost=0.00..9.18 rows=428 width=0) (actual time=0.418..0.419 rows=3424.00 loops=1)
+                           Index Cond: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                           Index Searches: 1
+                           Buffers: shared hit=8 read=1
+                           I/O Timings: shared read=0.007
+               ->  Bitmap Heap Scan on incidents_2023_12 incidents_12  (cost=9.36..426.19 rows=442 width=60) (actual time=0.637..6.384 rows=3539.00 loops=1)
+                     Recheck Cond: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                     Heap Blocks: exact=1155
+                     Buffers: shared hit=76 read=1088
+                     I/O Timings: shared read=0.301
+                     ->  Bitmap Index Scan on incidents_2023_12_search_document_idx  (cost=0.00..9.25 rows=442 width=0) (actual time=0.454..0.455 rows=3539.00 loops=1)
+                           Index Cond: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                           Index Searches: 1
+                           Buffers: shared hit=8 read=1
+                           I/O Timings: shared read=0.006
+               ->  Bitmap Heap Scan on incidents_2024_01 incidents_13  (cost=9.36..426.18 rows=442 width=60) (actual time=0.623..6.683 rows=3538.00 loops=1)
+                     Recheck Cond: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                     Heap Blocks: exact=1157
+                     Buffers: shared hit=96 read=1070
+                     I/O Timings: shared read=0.298
+                     ->  Bitmap Index Scan on incidents_2024_01_search_document_idx  (cost=0.00..9.25 rows=442 width=0) (actual time=0.432..0.432 rows=3538.00 loops=1)
+                           Index Cond: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                           Index Searches: 1
+                           Buffers: shared hit=8 read=1
+                           I/O Timings: shared read=0.007
+               ->  Bitmap Heap Scan on incidents_2024_02 incidents_14  (cost=9.21..400.50 rows=414 width=60) (actual time=0.479..6.771 rows=3311.00 loops=1)
+                     Recheck Cond: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                     Heap Blocks: exact=807
+                     Buffers: shared hit=39 read=777
+                     I/O Timings: shared read=0.325
+                     ->  Bitmap Index Scan on incidents_2024_02_search_document_idx  (cost=0.00..9.11 rows=414 width=0) (actual time=0.335..0.336 rows=3311.00 loops=1)
+                           Index Cond: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                           Index Searches: 1
+                           Buffers: shared hit=8 read=1
+                           I/O Timings: shared read=0.007
+               ->  Bitmap Heap Scan on incidents_2024_03 incidents_15  (cost=9.36..426.19 rows=442 width=60) (actual time=0.696..6.199 rows=3539.00 loops=1)
+                     Recheck Cond: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                     Heap Blocks: exact=1159
+                     Buffers: shared hit=90 read=1078
+                     I/O Timings: shared read=0.315
+                     ->  Bitmap Index Scan on incidents_2024_03_search_document_idx  (cost=0.00..9.25 rows=442 width=0) (actual time=0.491..0.491 rows=3539.00 loops=1)
+                           Index Cond: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                           Index Searches: 1
+                           Buffers: shared hit=8 read=1
+                           I/O Timings: shared read=0.007
+               ->  Bitmap Heap Scan on incidents_2024_04 incidents_16  (cost=9.29..413.25 rows=428 width=60) (actual time=0.628..5.484 rows=3425.00 loops=1)
+                     Recheck Cond: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                     Heap Blocks: exact=1278
+                     Buffers: shared hit=81 read=1206
+                     I/O Timings: shared read=0.194
+                     ->  Bitmap Index Scan on incidents_2024_04_search_document_idx  (cost=0.00..9.18 rows=428 width=0) (actual time=0.442..0.442 rows=3425.00 loops=1)
+                           Index Cond: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                           Index Searches: 1
+                           Buffers: shared hit=8 read=1
+                           I/O Timings: shared read=0.008
+               ->  Bitmap Heap Scan on incidents_2024_05 incidents_17  (cost=9.36..426.18 rows=442 width=60) (actual time=0.657..6.145 rows=3538.00 loops=1)
+                     Recheck Cond: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                     Heap Blocks: exact=1157
+                     Buffers: shared hit=67 read=1099
+                     I/O Timings: shared read=0.223
+                     ->  Bitmap Index Scan on incidents_2024_05_search_document_idx  (cost=0.00..9.25 rows=442 width=0) (actual time=0.483..0.483 rows=3538.00 loops=1)
+                           Index Cond: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                           Index Searches: 1
+                           Buffers: shared hit=8 read=1
+                           I/O Timings: shared read=0.008
+               ->  Bitmap Heap Scan on incidents_2024_06 incidents_18  (cost=9.29..413.24 rows=428 width=60) (actual time=0.608..4.600 rows=3424.00 loops=1)
+                     Recheck Cond: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                     Heap Blocks: exact=1250
+                     Buffers: shared hit=76 read=1183
+                     I/O Timings: shared read=0.198
+                     ->  Bitmap Index Scan on incidents_2024_06_search_document_idx  (cost=0.00..9.18 rows=428 width=0) (actual time=0.424..0.424 rows=3424.00 loops=1)
+                           Index Cond: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                           Index Searches: 1
+                           Buffers: shared hit=8 read=1
+                           I/O Timings: shared read=0.007
+               ->  Bitmap Heap Scan on incidents_2024_07 incidents_19  (cost=9.36..427.23 rows=443 width=60) (actual time=0.679..5.162 rows=3540.00 loops=1)
+                     Recheck Cond: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                     Heap Blocks: exact=1159
+                     Buffers: shared hit=65 read=1103
+                     I/O Timings: shared read=0.511
+                     ->  Bitmap Index Scan on incidents_2024_07_search_document_idx  (cost=0.00..9.25 rows=443 width=0) (actual time=0.486..0.486 rows=3540.00 loops=1)
+                           Index Cond: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                           Index Searches: 1
+                           Buffers: shared hit=8 read=1
+                           I/O Timings: shared read=0.010
+               ->  Bitmap Heap Scan on incidents_2024_08 incidents_20  (cost=9.36..426.19 rows=442 width=60) (actual time=0.849..5.983 rows=3539.00 loops=1)
+                     Recheck Cond: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                     Heap Blocks: exact=1156
+                     Buffers: shared hit=70 read=1095
+                     I/O Timings: shared read=0.207
+                     ->  Bitmap Index Scan on incidents_2024_08_search_document_idx  (cost=0.00..9.25 rows=442 width=0) (actual time=0.610..0.610 rows=3539.00 loops=1)
+                           Index Cond: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                           Index Searches: 1
+                           Buffers: shared hit=8 read=1
+                           I/O Timings: shared read=0.011
+               ->  Bitmap Heap Scan on incidents_2024_09 incidents_21  (cost=9.29..413.24 rows=428 width=60) (actual time=0.617..5.808 rows=3424.00 loops=1)
+                     Recheck Cond: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                     Heap Blocks: exact=1248
+                     Buffers: shared hit=76 read=1181
+                     I/O Timings: shared read=0.101
+                     ->  Bitmap Index Scan on incidents_2024_09_search_document_idx  (cost=0.00..9.18 rows=428 width=0) (actual time=0.445..0.445 rows=3424.00 loops=1)
+                           Index Cond: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                           Index Searches: 1
+                           Buffers: shared hit=8 read=1
+                           I/O Timings: shared read=0.008
+               ->  Bitmap Heap Scan on incidents_2024_10 incidents_22  (cost=9.36..426.19 rows=442 width=60) (actual time=0.584..5.811 rows=3539.00 loops=1)
+                     Recheck Cond: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                     Heap Blocks: exact=1157
+                     Buffers: shared hit=73 read=1093
+                     I/O Timings: shared read=0.120
+                     ->  Bitmap Index Scan on incidents_2024_10_search_document_idx  (cost=0.00..9.25 rows=442 width=0) (actual time=0.429..0.430 rows=3539.00 loops=1)
+                           Index Cond: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                           Index Searches: 1
+                           Buffers: shared hit=8 read=1
+                           I/O Timings: shared read=0.008
+               ->  Bitmap Heap Scan on incidents_2024_11 incidents_23  (cost=9.29..413.25 rows=428 width=60) (actual time=0.618..6.022 rows=3425.00 loops=1)
+                     Recheck Cond: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                     Heap Blocks: exact=1248
+                     Buffers: shared hit=73 read=1184
+                     I/O Timings: shared read=1.066
+                     ->  Bitmap Index Scan on incidents_2024_11_search_document_idx  (cost=0.00..9.18 rows=428 width=0) (actual time=0.433..0.434 rows=3425.00 loops=1)
+                           Index Cond: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                           Index Searches: 1
+                           Buffers: shared hit=8 read=1
+                           I/O Timings: shared read=0.007
+               ->  Bitmap Heap Scan on incidents_2024_12 incidents_24  (cost=9.36..426.19 rows=442 width=60) (actual time=0.727..5.742 rows=3539.00 loops=1)
+                     Recheck Cond: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                     Heap Blocks: exact=1158
+                     Buffers: shared hit=84 read=1083
+                     I/O Timings: shared read=0.258
+                     ->  Bitmap Index Scan on incidents_2024_12_search_document_idx  (cost=0.00..9.25 rows=442 width=0) (actual time=0.536..0.536 rows=3539.00 loops=1)
+                           Index Cond: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                           Index Searches: 1
+                           Buffers: shared hit=8 read=1
+                           I/O Timings: shared read=0.010
+               ->  Bitmap Heap Scan on incidents_2025_01 incidents_25  (cost=9.36..426.18 rows=442 width=60) (actual time=0.642..5.940 rows=3538.00 loops=1)
+                     Recheck Cond: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                     Heap Blocks: exact=1155
+                     Buffers: shared hit=74 read=1090 written=11
+                     I/O Timings: shared read=0.257 write=0.062
+                     ->  Bitmap Index Scan on incidents_2025_01_search_document_idx  (cost=0.00..9.25 rows=442 width=0) (actual time=0.454..0.454 rows=3538.00 loops=1)
+                           Index Cond: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                           Index Searches: 1
+                           Buffers: shared hit=8 read=1
+                           I/O Timings: shared read=0.006
+               ->  Bitmap Heap Scan on incidents_2025_02 incidents_26  (cost=9.14..385.47 rows=399 width=60) (actual time=0.602..4.712 rows=3196.00 loops=1)
+                     Recheck Cond: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                     Heap Blocks: exact=956
+                     Buffers: shared hit=57 read=908
+                     I/O Timings: shared read=0.288
+                     ->  Bitmap Index Scan on incidents_2025_02_search_document_idx  (cost=0.00..9.04 rows=399 width=0) (actual time=0.420..0.420 rows=3196.00 loops=1)
+                           Index Cond: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                           Index Searches: 1
+                           Buffers: shared hit=8 read=1
+                           I/O Timings: shared read=0.007
+               ->  Bitmap Heap Scan on incidents_2025_03 incidents_27  (cost=9.36..426.19 rows=442 width=60) (actual time=0.631..4.750 rows=3539.00 loops=1)
+                     Recheck Cond: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                     Heap Blocks: exact=1155
+                     Buffers: shared hit=94 read=1070
+                     I/O Timings: shared read=0.286
+                     ->  Bitmap Index Scan on incidents_2025_03_search_document_idx  (cost=0.00..9.25 rows=442 width=0) (actual time=0.433..0.433 rows=3539.00 loops=1)
+                           Index Cond: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                           Index Searches: 1
+                           Buffers: shared hit=8 read=1
+                           I/O Timings: shared read=0.007
+               ->  Bitmap Heap Scan on incidents_2025_04 incidents_28  (cost=9.29..413.25 rows=428 width=60) (actual time=0.633..4.746 rows=3426.00 loops=1)
+                     Recheck Cond: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                     Heap Blocks: exact=1253
+                     Buffers: shared hit=78 read=1184
+                     I/O Timings: shared read=0.314
+                     ->  Bitmap Index Scan on incidents_2025_04_search_document_idx  (cost=0.00..9.18 rows=428 width=0) (actual time=0.438..0.438 rows=3426.00 loops=1)
+                           Index Cond: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                           Index Searches: 1
+                           Buffers: shared hit=7 read=2
+                           I/O Timings: shared read=0.010
+               ->  Bitmap Heap Scan on incidents_2025_05 incidents_29  (cost=9.36..426.18 rows=442 width=60) (actual time=1.020..5.375 rows=3538.00 loops=1)
+                     Recheck Cond: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                     Heap Blocks: exact=1157
+                     Buffers: shared hit=48 read=1118
+                     I/O Timings: shared read=0.583
+                     ->  Bitmap Index Scan on incidents_2025_05_search_document_idx  (cost=0.00..9.25 rows=442 width=0) (actual time=0.541..0.541 rows=3538.00 loops=1)
+                           Index Cond: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                           Index Searches: 1
+                           Buffers: shared hit=7 read=2
+                           I/O Timings: shared read=0.011
+               ->  Bitmap Heap Scan on incidents_2025_06 incidents_30  (cost=9.29..413.24 rows=428 width=60) (actual time=0.644..4.255 rows=3424.00 loops=1)
+                     Recheck Cond: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                     Heap Blocks: exact=1247
+                     Buffers: shared hit=9 read=1247
+                     I/O Timings: shared read=0.199
+                     ->  Bitmap Index Scan on incidents_2025_06_search_document_idx  (cost=0.00..9.18 rows=428 width=0) (actual time=0.455..0.455 rows=3424.00 loops=1)
+                           Index Cond: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                           Index Searches: 1
+                           Buffers: shared hit=7 read=2
+                           I/O Timings: shared read=0.009
+               ->  Bitmap Heap Scan on incidents_2025_07 incidents_31  (cost=9.36..426.19 rows=442 width=60) (actual time=0.621..4.276 rows=3539.00 loops=1)
+                     Recheck Cond: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                     Heap Blocks: exact=1155
+                     Buffers: shared hit=8 read=1156
+                     I/O Timings: shared read=0.251
+                     ->  Bitmap Index Scan on incidents_2025_07_search_document_idx  (cost=0.00..9.25 rows=442 width=0) (actual time=0.447..0.447 rows=3539.00 loops=1)
+                           Index Cond: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                           Index Searches: 1
+                           Buffers: shared hit=7 read=2
+                           I/O Timings: shared read=0.013
+               ->  Bitmap Heap Scan on incidents_2025_08 incidents_32  (cost=9.36..427.23 rows=443 width=60) (actual time=0.632..4.749 rows=3540.00 loops=1)
+                     Recheck Cond: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                     Heap Blocks: exact=1156
+                     Buffers: shared hit=7 read=1158
+                     I/O Timings: shared read=0.253
+                     ->  Bitmap Index Scan on incidents_2025_08_search_document_idx  (cost=0.00..9.25 rows=443 width=0) (actual time=0.445..0.446 rows=3540.00 loops=1)
+                           Index Cond: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                           Index Searches: 1
+                           Buffers: shared hit=7 read=2
+                           I/O Timings: shared read=0.012
+               ->  Bitmap Heap Scan on incidents_2025_09 incidents_33  (cost=9.29..413.24 rows=428 width=60) (actual time=0.633..5.039 rows=3424.00 loops=1)
+                     Recheck Cond: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                     Heap Blocks: exact=1258
+                     Buffers: shared hit=39 read=1228
+                     I/O Timings: shared read=0.264
+                     ->  Bitmap Index Scan on incidents_2025_09_search_document_idx  (cost=0.00..9.18 rows=428 width=0) (actual time=0.441..0.441 rows=3424.00 loops=1)
+                           Index Cond: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                           Index Searches: 1
+                           Buffers: shared hit=7 read=2
+                           I/O Timings: shared read=0.012
+               ->  Bitmap Heap Scan on incidents_2025_10 incidents_34  (cost=9.36..426.18 rows=442 width=60) (actual time=0.622..5.584 rows=3538.00 loops=1)
+                     Recheck Cond: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                     Heap Blocks: exact=1157
+                     Buffers: shared hit=74 read=1092
+                     I/O Timings: shared read=0.235
+                     ->  Bitmap Index Scan on incidents_2025_10_search_document_idx  (cost=0.00..9.25 rows=442 width=0) (actual time=0.448..0.448 rows=3538.00 loops=1)
+                           Index Cond: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                           Index Searches: 1
+                           Buffers: shared hit=7 read=2
+                           I/O Timings: shared read=0.013
+               ->  Bitmap Heap Scan on incidents_2025_11 incidents_35  (cost=9.29..413.25 rows=428 width=60) (actual time=0.632..5.180 rows=3425.00 loops=1)
+                     Recheck Cond: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                     Heap Blocks: exact=1290
+                     Buffers: shared hit=31 read=1268
+                     I/O Timings: shared read=0.278
+                     ->  Bitmap Index Scan on incidents_2025_11_search_document_idx  (cost=0.00..9.18 rows=428 width=0) (actual time=0.443..0.444 rows=3425.00 loops=1)
+                           Index Cond: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                           Index Searches: 1
+                           Buffers: shared hit=7 read=2
+                           I/O Timings: shared read=0.012
+               ->  Bitmap Heap Scan on incidents_2025_12 incidents_36  (cost=9.29..413.24 rows=428 width=60) (actual time=0.616..4.807 rows=3424.00 loops=1)
+                     Recheck Cond: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                     Heap Blocks: exact=1249
+                     Buffers: shared hit=8 read=1250
+                     I/O Timings: shared read=0.198
+                     ->  Bitmap Index Scan on incidents_2025_12_search_document_idx  (cost=0.00..9.18 rows=428 width=0) (actual time=0.433..0.433 rows=3424.00 loops=1)
+                           Index Cond: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+                           Index Searches: 1
+                           Buffers: shared hit=7 read=2
+                           I/O Timings: shared read=0.012
+               ->  Seq Scan on incidents_default incidents_37  (cost=0.00..0.00 rows=1 width=52) (actual time=0.007..0.007 rows=0.00 loops=1)
+                     Filter: (search_document @@ '''vpn'' & ''timeout'''::tsquery)
+ Settings: work_mem = '32MB', random_page_cost = '1.1'
+ Planning:
+   Buffers: shared hit=7718 read=28
+   I/O Timings: shared read=0.172
+ Planning Time: 11.300 ms
+ Execution Time: 257.276 ms
+(379 rows)
+

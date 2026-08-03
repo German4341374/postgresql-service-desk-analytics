@@ -1,0 +1,11 @@
+captured_at_utc=2026-08-03T22:27:10Z
+git_commit=6de9ca0189164437ad47feb61b7d4541399a7b7c
+postgres_version=18.4 (Debian 18.4-1.pgdg12+1)
+database_size=1315 MB
+assignments=1111111
+comments=1250000
+devices=200000
+incidents=1000000
+sla_events=2000000
+software_installations=600000
+users=100000
