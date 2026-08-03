@@ -1,0 +1,33 @@
+name: Bug report
+description: Report a reproducible schema, query, script, or documentation problem.
+title: "bug: "
+labels: [bug]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Problem
+      description: What happened, and what did you expect?
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction
+      description: Include commands, SEED_SCALE, PostgreSQL version, and sanitized output.
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      placeholder: Docker version, Compose version, WSL2/Linux distribution
+    validations:
+      required: true
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Data safety
+      options:
+        - label: The report contains no credentials or production data.
+          required: true

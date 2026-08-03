@@ -1,0 +1,89 @@
+name: Full-scale benchmark
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirmation:
+        description: Type RUN_FULL_BENCHMARK to generate the 1M-incident data set
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: full-scale-benchmark
+  cancel-in-progress: false
+
+jobs:
+  benchmark:
+    name: Measure PostgreSQL plans on the full data set
+    if: inputs.confirmation == 'RUN_FULL_BENCHMARK'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    env:
+      POSTGRES_DB: service_desk_analytics
+      POSTGRES_USER: service_desk
+      POSTGRES_PASSWORD: benchmark-local-only-password
+      POSTGRES_PORT: "5434"
+      SEED_SCALE: "1"
+      RESULTS_DIR: optimization/results/generated
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+
+      - name: Show runner resources
+        run: |
+          lscpu
+          free -h
+          df -h
+
+      - name: Start and prepare PostgreSQL
+        run: |
+          docker compose up --detach
+          bash scripts/wait-for-postgres.sh
+          bash scripts/migrate.sh
+          bash scripts/seed.sh
+
+      - name: Capture actual baseline and optimized plans
+        run: bash scripts/benchmark.sh
+
+      - name: Verify the full data set
+        run: |
+          bash scripts/refresh-materialized-views.sh
+          bash scripts/smoke-test.sh
+          bash scripts/query-smoke.sh
+
+      - name: Publish measured summary
+        run: |
+          printf '## Full-scale benchmark\n\n' >> "$GITHUB_STEP_SUMMARY"
+          printf '```text\n' >> "$GITHUB_STEP_SUMMARY"
+          cat optimization/results/generated/metadata.txt >> "$GITHUB_STEP_SUMMARY"
+          printf '```\n\n```csv\n' >> "$GITHUB_STEP_SUMMARY"
+          cat optimization/results/generated/summary.csv >> "$GITHUB_STEP_SUMMARY"
+          printf '```\n' >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload raw PostgreSQL plans
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: full-scale-postgresql-plans-${{ github.run_id }}
+          path: optimization/results/generated
+          if-no-files-found: error
+          retention-days: 30
+
+      - name: Collect PostgreSQL logs after failure
+        if: failure()
+        run: docker compose logs --no-color database > postgres-benchmark.log
+
+      - name: Upload failure diagnostics
+        if: failure()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: benchmark-failure-${{ github.run_id }}
+          path: postgres-benchmark.log
+          if-no-files-found: ignore
+          retention-days: 7
+
+      - name: Stop the environment
+        if: always()
+        run: docker compose down --volumes --remove-orphans

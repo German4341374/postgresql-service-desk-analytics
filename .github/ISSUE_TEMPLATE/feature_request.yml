@@ -1,0 +1,24 @@
+name: Feature request
+description: Propose a focused SQL, testing, or documentation improvement.
+title: "feat: "
+labels: [enhancement]
+body:
+  - type: textarea
+    id: use_case
+    attributes:
+      label: Use case
+      description: Describe the Service Desk or PostgreSQL problem.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed change
+      description: Explain the expected schema, query, or workflow behavior.
+    validations:
+      required: true
+  - type: textarea
+    id: tradeoffs
+    attributes:
+      label: Trade-offs
+      description: Note data volume, compatibility, locking, or performance effects.
