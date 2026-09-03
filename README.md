@@ -150,7 +150,7 @@ docker compose exec -T database psql -U service_desk -d service_desk_analytics \
   -f /workspace/queries/operations/rls_demo.sql
 ```
 
-The demo uses a transaction-local department setting and rolls back. It demonstrates database enforcement, not a complete authorization system.
+The demo uses a transaction-local department setting and rolls back. Its purpose is to show database enforcement, not a complete authorization system.
 
 ### Isolation and deadlocks
 
@@ -229,7 +229,7 @@ docs/                       Design notes, report, and runbooks
 .github/workflows/          Fast CI and manual full-scale benchmark
 ```
 
-## Future improvements
+## Next database exercises
 
 - Automated future-partition creation and safe partition detachment.
 - `pg_stat_statements`-based workload capture.
