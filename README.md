@@ -2,9 +2,13 @@
 
 [![CI](https://github.com/German4341374/postgresql-service-desk-analytics/actions/workflows/ci.yml/badge.svg)](https://github.com/German4341374/postgresql-service-desk-analytics/actions/workflows/ci.yml)
 
-An advanced, SQL-first Service Desk analytics laboratory for PostgreSQL. The project builds a deterministic synthetic workload, demonstrates operational database techniques, and measures ten query optimizations using raw `EXPLAIN (ANALYZE, BUFFERS, WAL, SETTINGS)` output.
+A PostgreSQL dataset for trying queries that are too small to be interesting with ten rows.
+The full setup contains 100,000 users, 200,000 devices, and a million support incidents,
+plus comments, assignments, and software records. All of the data is fake and repeatable.
 
-No cloud account, paid service, or production data is required. The full data profile contains exactly 100,000 users, 200,000 devices, and 1,000,000 incidents, plus comments, assignments, SLA events, and software installations.
+Start with the smaller test profile, then use the full one to compare query plans and indexes.
+The repo includes ten optimization exercises and saves the raw EXPLAIN output so you can
+check what actually changed.
 
 ## Highlights
 
